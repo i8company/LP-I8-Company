@@ -131,35 +131,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (video) {
         let targetTime = 0;
         let currentTime = 0;
-        const interpolationFactor = 0.1; // Adjust for smoothness (0.1 = very smooth)
+        const interpolationFactor = 0.2; // Snappier response (was 0.1)
 
         const handleMetadata = () => {
             const duration = video.duration;
             
-        const heroText = document.querySelector('.hero-text.centered');
-        
-        const scrubVideo = () => {
-            const scrollRange = window.innerHeight * 2; // Longer range for background feel
-            const scrollFraction = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
-            
-            targetTime = scrollFraction * duration;
-            
-            currentTime += (targetTime - currentTime) * interpolationFactor;
-            
-            if (Math.abs(currentTime - video.currentTime) > 0.01) {
-                video.currentTime = currentTime;
-            }
-
-            // --- Parallax for Content ---
-            if (heroText) {
-                const textY = window.scrollY * 0.4;
-                const textOpacity = 1 - (window.scrollY / (window.innerHeight * 0.7));
-                heroText.style.transform = `translateY(${textY}px)`;
-                heroText.style.opacity = Math.max(textOpacity, 0);
-            }
-            
-            requestAnimationFrame(scrubVideo);
-        };
+            const scrubVideo = () => {
+                // Calculate scroll fraction (how much of the first "fold" has been scrolled)
+                // We use 1.2 * innerHeight to give more room for the animation
+                const scrollRange = window.innerHeight * 1.5;
+                const scrollFraction = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
+                
+                targetTime = scrollFraction * duration;
+                
+                // Interpolation for smooth motion
+                currentTime += (targetTime - currentTime) * interpolationFactor;
+                
+                // Set video time
+                if (Math.abs(currentTime - video.currentTime) > 0.01) {
+                    video.currentTime = currentTime;
+                }
+                
+                requestAnimationFrame(scrubVideo);
+            };
 
             // Start the scrubbing loop
             requestAnimationFrame(scrubVideo);

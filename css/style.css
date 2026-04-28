@@ -1,34 +1,34 @@
-    /* Antigravity Design System - Deep Space Palette (Inspired by Reference) */
-    --bg-main: #020408;
-    --bg-surface: #05070A;
-    --bg-surface-elevated: #0A0C12;
+:root {
+    /* Antigravity Design System - Deep Space Palette */
+    --bg-main: #03050C;
+    --bg-surface: #0A0D18;
+    --bg-surface-elevated: #121726;
     
     --text-main: #FFFFFF;
     --text-muted: #94A3B8;
-    --text-dim: #475569;
+    --text-dim: #64748B;
     
     /* Branding */
     --primary: #7B4DFF; /* Electric Purple */
-    --primary-light: #B794FF;
-    --primary-glow: rgba(123, 77, 255, 0.5);
-    --primary-transparent: rgba(123, 77, 255, 0.1);
+    --primary-light: #9D7AFF;
+    --primary-glow: rgba(123, 77, 255, 0.4);
     
     --accent-gold: #FFD700;
     --accent-cyan: #00F2FF;
     
     /* Semantic */
-    --border-glass: rgba(255, 255, 255, 0.05);
-    --border-glass-bright: rgba(255, 255, 255, 0.12);
-    --glass-bg: rgba(5, 7, 10, 0.6);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-glass-bright: rgba(255, 255, 255, 0.15);
+    --glass-bg: rgba(10, 13, 24, 0.7);
     
     /* Layout */
-    --max-width: 1300px;
-    --radius-lg: 32px;
-    --radius-md: 20px;
+    --max-width: 1200px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
     --radius-sm: 12px;
     
-    --transition-base: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-bounce: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-base: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ─── BASE ─── */
@@ -53,40 +53,15 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Grainy Overlay - Senior Detail */
+/* Space Noise Overlay */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    opacity: 0.4;
     pointer-events: none;
-    z-index: 10000;
-}
-
-/* Dynamic Animated Background */
-.dynamic-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    background: radial-gradient(circle at 50% 50%, #0A0C12 0%, #020408 100%);
-    overflow: hidden;
-}
-
-.dynamic-bg::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, var(--primary-transparent) 0%, transparent 50%);
-    animation: bgRotate 20s linear infinite;
-    filter: blur(100px);
-}
-
-@keyframes bgRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    z-index: 9999;
 }
 
 h1, h2, h3, h4 {
@@ -267,89 +242,47 @@ a {
     align-items: center;
 }
 
-.hero-bg-glow {
+/* Hero Video Background Integration */
+.hero-video-bg {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 140%;
-    height: 140%;
-    background: radial-gradient(circle at center, rgba(123, 77, 255, 0.1) 0%, rgba(3, 5, 12, 0) 70%);
-    z-index: -1;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
     pointer-events: none;
 }
 
-.hero-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 100vh;
-    padding-top: 80px;
-}
-
-.hero-text.centered {
-    z-index: 10;
-    position: relative;
-    max-width: 1000px;
-    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-}
-
-.hero-bg-video {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
+#hero-video {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    /* Invert if the video is white-background, keep purple via hue-rotate */
-    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1);
-    opacity: 0.6; /* Balanced for readability */
-    pointer-events: none;
+    /* Blend light video with dark theme */
+    filter: invert(1) hue-rotate(180deg) brightness(0.8);
+    opacity: 0.4;
 }
 
-/* Masking the video to avoid rectangular edges */
-.dynamic-bg::after {
-    content: '';
+.hero-video-overlay {
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at center, 
-                transparent 20%, 
-                var(--bg-main) 80%);
-    z-index: 0;
-    pointer-events: none;
+                transparent 0%, 
+                var(--bg-main) 85%);
+    z-index: 1;
 }
 
-.video-overlay-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, 
-                var(--primary-glow) 0%, 
-                transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.3;
+.hero-main {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-text h1 {
-    font-size: clamp(3.5rem, 8vw, 6rem);
-    font-weight: 800;
-    line-height: 0.95;
-    margin-bottom: 2rem;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-}
-
-.hero-text h1 .highlight {
-    background: linear-gradient(to right, var(--primary-light), #FFFFFF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
 }
 
 .highlight {
@@ -370,57 +303,8 @@ a {
     flex-wrap: wrap;
 }
 
-/* Video Scroll Wrapper - Senior Level Design */
-.video-scroll-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 550px;
-    margin: 0 auto;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    /* Glassmorphism border */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5), 
-                0 0 30px var(--primary-glow);
-    background: rgba(10, 13, 24, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: var(--transition-bounce);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-.video-scroll-wrapper:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 50px 120px rgba(0, 0, 0, 0.6), 
-                0 0 50px var(--primary-glow);
-}
-
-#hero-video {
-    width: 100%;
-    height: auto;
-    display: block;
-    mix-blend-mode: lighten; /* Optional: adjust based on video background */
-    transform: scale(1.05); /* Slight scale to hide edges if needed */
-}
-
-.video-overlay-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, 
-                rgba(123, 77, 255, 0.15) 0%, 
-                transparent 70%);
-    pointer-events: none;
-    z-index: 2;
-    animation: glowBreath 4s ease-in-out infinite alternate;
-}
-
-/* Fallback img style inside video wrapper */
-.video-scroll-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
+.hero-visual-placeholder {
+    height: 400px;
 }
 
 /* Hero Stats */
