@@ -3,68 +3,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.85)';
-            navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.05)';
+            navbar.style.background = 'rgba(3, 5, 12, 0.9)';
+            navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+            navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.7)';
+            navbar.style.background = 'rgba(3, 5, 12, 0.7)';
             navbar.style.boxShadow = 'none';
+            navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.08)';
         }
     });
 
     // 2. FAQ Accordion Logic
-    const accordionItems = document.querySelectorAll('.accordion-item');
-    
-    accordionItems.forEach(item => {
-        const header = item.querySelector('.accordion-header');
-        
-        header.addEventListener('click', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
             
-            // Close all other accordions
-            accordionItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
-                otherItem.querySelector('.accordion-content').style.maxHeight = null;
-            });
+            // Close other items
+            faqItems.forEach(i => i.classList.remove('active'));
             
-            // Toggle current accordion
             if (!isActive) {
                 item.classList.add('active');
-                const content = item.querySelector('.accordion-content');
-                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
 
     // 3. Scroll Animations (Intersection Observer)
     const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.fade-in-up');
-    animatedElements.forEach(el => observer.observe(el));
-    
-    // Smooth scrolling for anchor links
+    document.querySelectorAll('.fade-in, .fade-in-up, .slide-in-left, .slide-in-right').forEach(el => observer.observe(el));
+
+    // 4. Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            if(this.getAttribute('href') !== '#') {
+            const href = this.getAttribute('href');
+            if(href !== '#' && href.startsWith('#')) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                const targetElement = document.querySelector(href);
                 
                 if (targetElement) {
                     const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - (navbarHeight + 20);
                     
                     window.scrollTo({
                         top: targetPosition,
@@ -74,4 +65,112 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 5. Phone Mask
+    const telInput = document.getElementById('telefone');
+    if (telInput) {
+        telInput.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length > 11) v = v.substring(0, 11);
+            if (v.length > 10) {
+                v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            } else if (v.length > 6) {
+                v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (v.length > 2) {
+                v = v.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+            } else if (v.length > 0) {
+                v = v.replace(/^(\d{0,2})/, '($1');
+            }
+            e.target.value = v;
+        });
+    }
+
+    // 6. Supabase Lead Form logic
+    const form = document.getElementById('lead-form');
+    if (form && window.supabaseClient) {
+        const supabaseClient = window.supabaseClient;
+        
+        const submitBtn = document.getElementById('submit-btn');
+        const formSuccess = document.getElementById('form-success');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Enviando...';
+
+            const formData = new FormData(form);
+            const data = {
+                nome: formData.get('nome'),
+                email: formData.get('email'),
+                telefone: formData.get('telefone'),
+                empresa: formData.get('empresa'),
+                mensagem: formData.get('mensagem'),
+                solucoes: Array.from(formData.getAll('solucoes')).join(', '),
+                criado_em: new Date().toISOString()
+            };
+
+            const { error } = await supabaseClient
+                .from('leads')
+                .insert([data]);
+
+            if (error) {
+                console.error('Erro ao enviar lead:', error);
+                alert('Erro ao enviar. Tente novamente.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Falar com especialista <i class="ph ph-paper-plane-tilt"></i>';
+            } else {
+                form.style.display = 'none';
+                formSuccess.style.display = 'flex';
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    }
+    // 7. Video Scroll Scrubbing Logic
+    const video = document.getElementById('hero-video');
+    
+    if (video) {
+        let targetTime = 0;
+        let currentTime = 0;
+        const interpolationFactor = 0.1; // Adjust for smoothness (0.1 = very smooth)
+
+        const handleMetadata = () => {
+            const duration = video.duration;
+            
+            const scrubVideo = () => {
+                // Calculate scroll fraction (how much of the first "fold" has been scrolled)
+                // We use 1.2 * innerHeight to give more room for the animation
+                const scrollRange = window.innerHeight * 1.5;
+                const scrollFraction = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
+                
+                targetTime = scrollFraction * duration;
+                
+                // Interpolation for smooth motion
+                currentTime += (targetTime - currentTime) * interpolationFactor;
+                
+                // Set video time
+                if (Math.abs(currentTime - video.currentTime) > 0.01) {
+                    video.currentTime = currentTime;
+                }
+                
+                requestAnimationFrame(scrubVideo);
+            };
+
+            // Start the scrubbing loop
+            requestAnimationFrame(scrubVideo);
+        };
+
+        if (video.readyState >= 1) {
+            handleMetadata();
+        } else {
+            video.addEventListener('loadedmetadata', handleMetadata);
+        }
+
+        // Fix for some browsers/mobile where video might not auto-play or show first frame
+        video.play().then(() => {
+            video.pause();
+        }).catch(e => {
+            // Video might need user interaction to "start" in some contexts
+            console.log("Video scrub waiting for interaction or auto-play block");
+        });
+    }
 });

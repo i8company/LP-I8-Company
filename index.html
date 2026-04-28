@@ -4,31 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>i8 Company | Automação e IA para o seu negócio</title>
-
-    <meta name="description"
-        content="A i8 Company transforma negócios com IA e marketing digital. Automatize seu atendimento e escale suas vendas no piloto automático.">
+    <title>i8 Company | Seu negócio no piloto automático com IA</title>
+    <meta name="description" content="A i8 Company transforma negócios com IA e marketing digital. Atendimento automatizado, leads organizados e mais vendas.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <header class="navbar">
-        <div class="container">
+        <div class="container nav-container">
 
-            <div class="logo">
+            <a href="#" class="logo">
                 <img src="assets/logo.png" alt="i8 Company Logo" id="nav-logo"
                     onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block';">
 
@@ -36,17 +32,18 @@
                     style="display:none;font-family:'Outfit';font-weight:700;font-size:1.5rem;color:var(--text-main);">
                     i<span style="color:var(--primary);">8</span> Company
                 </span>
-            </div>
+            </a>
 
             <nav class="nav-links">
-                <a href="#features">Por que a i8?</a>
-                <a href="#planos">Planos de IA</a>
+                <a href="#por-que-i8">Por que a i8?</a>
+                <a href="#planos">Planos</a>
                 <a href="#servicos">Serviços</a>
                 <a href="#faq">FAQ</a>
+                <a href="#contato">Contato</a>
             </nav>
 
             <div class="nav-actions">
-                <a href="#planos" class="btn btn-outline">Ver planos</a>
+                <a href="#contato" class="nav-cta">Falar com especialista</a>
             </div>
 
         </div>
@@ -56,25 +53,29 @@
 
         <!-- HERO -->
         <section class="hero">
+            <div class="hero-bg-glow"></div>
             <div class="container hero-container">
                 <div class="hero-main">
                     <div class="hero-text">
-                        <h1 class="fade-in-up">
-                            Sua empresa atendendo, vendendo e crescendo —
-                            <span class="highlight">no piloto automático.</span>
+                        <div class="badge fade-in-up">
+                            <span class="pulse-dot"></span> 
+                            Inteligência Artificial + Tráfego Pago
+                        </div>
+
+                        <h1 class="fade-in-up delay-1">
+                            Seu negócio no <span class="highlight">piloto automático</span> — do atendimento à venda.
                         </h1>
 
-                        <p class="fade-in-up delay-1">
-                            A i8 Company transforma negócios com IA e marketing digital.
-                            Automatize seu atendimento, organize seus leads e escale suas vendas sem contratar mais.
+                        <p class="hero-sub fade-in-up delay-1">
+                            A i8 Company transforma negócios com IA e marketing digital. 
+                            Atendimento automatizado, leads organizados e mais vendas sem contratar mais.
                         </p>
 
                         <div class="hero-actions fade-in-up delay-2">
-                            <a href="#planos" class="btn btn-primary">
+                            <a href="#contato" class="btn btn-primary">
                                 Quero automatizar meu negócio
                                 <i class="ph ph-arrow-up-right"></i>
                             </a>
-
                             <a href="#planos" class="btn btn-secondary">
                                 Ver os planos
                             </a>
@@ -82,9 +83,13 @@
                     </div>
 
                     <div class="hero-visual fade-in-up delay-2">
-                        <div class="logo-shiny-wrapper">
-                            <img src="assets/logo-hero.png" alt="i8 Company Premium Logo" class="logo-hero">
-                            <div class="logo-glow"></div>
+                        <div class="video-scroll-wrapper">
+                            <video id="hero-video" playsinline muted preload="auto">
+                                <source src="Banner i8.mp4" type="video/mp4">
+                                <!-- Fallback image if video fails or is not supported -->
+                                <img src="assets/Banner gif/Banneri8-ezgif.com-gif-to-apng-converter.png" alt="i8 Company Animated Banner">
+                            </video>
+                            <div class="video-overlay-glow"></div>
                         </div>
                     </div>
                 </div>
@@ -102,294 +107,322 @@
 
                     <div class="stat-item glass-card">
                         <h2>-70%</h2>
-                        <p>Menos trabalho manual</p>
+                        <p>Trabalho manual</p>
                     </div>
                 </div>
-
             </div>
-
-            <div class="hero-bg-glow"></div>
         </section>
 
         <!-- FEATURES -->
-        <section id="features" class="features">
+        <section id="por-que-i8" class="section">
             <div class="container">
-
                 <div class="section-header fade-in-up">
-                    <span class="badge">POR QUE A i8?</span>
+                    <p class="section-tag">Por que a i8?</p>
                     <h2>Tudo que seu negócio precisa para escalar</h2>
+                    <p class="section-desc">Tecnologia de ponta aplicada ao dia a dia da sua empresa — sem complicação, sem necessidade técnica.</p>
                 </div>
 
                 <div class="features-grid">
-
-                    <div class="feature-card fade-in-up">
-                        <div class="icon-wrapper icon-yellow">
-                            <i class="ph ph-lightning"></i>
-                        </div>
-                        <h3>Respostas instantâneas</h3>
-                        <p>Seu agente de IA responde clientes em segundos.</p>
+                    <div class="feature-card glass-card fade-in-up">
+                        <div class="feature-icon"><i class="ph ph-lightning"></i></div>
+                        <h3>Respostas Instantâneas</h3>
+                        <p>Seu agente de IA responde clientes em segundos, no WhatsApp ou no site, a qualquer hora do dia.</p>
                     </div>
-
-                    <div class="feature-card fade-in-up delay-1">
-                        <div class="icon-wrapper icon-blue">
-                            <i class="ph ph-chart-bar"></i>
-                        </div>
-                        <h3>Leads organizados</h3>
-                        <p>Seu funil sempre atualizado.</p>
+                    <div class="feature-card glass-card fade-in-up delay-1">
+                        <div class="feature-icon"><i class="ph ph-target"></i></div>
+                        <h3>Leads Organizados</h3>
+                        <p>Funil sempre atualizado com CRM visual. Saiba exatamente onde cada cliente está no processo.</p>
                     </div>
-
-                    <div class="feature-card fade-in-up delay-2">
-                        <div class="icon-wrapper icon-red">
-                            <i class="ph ph-target"></i>
-                        </div>
-                        <h3>Tráfego que converte</h3>
-                        <p>Mais resultado com menos gasto.</p>
+                    <div class="feature-card glass-card fade-in-up delay-2">
+                        <div class="feature-icon"><i class="ph ph-chart-line-up"></i></div>
+                        <h3>Tráfego que Converte</h3>
+                        <p>Gestão profissional de Google Ads e Meta Ads com IA para maximizar seu ROI.</p>
                     </div>
-
+                    <div class="feature-card glass-card fade-in-up delay-3">
+                        <div class="feature-icon"><i class="ph ph-arrows-counter-clockwise"></i></div>
+                        <h3>Automação Completa</h3>
+                        <p>Follow-up, remarketing e e-mail marketing no piloto automático. Seu negócio trabalhando enquanto você dorme.</p>
+                    </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- Pricing Section -->
-        <section id="planos" class="pricing">
+        <!-- PLANS -->
+        <section id="planos" class="section">
             <div class="container">
-                <div class="section-header text-center fade-in-up">
-                    <span class="badge">PLANOS DE IA</span>
-                    <h2>Escolha o nível de automação ideal para você</h2>
-                    <p>De quem está começando a quem quer automação completa.</p>
+                <div class="section-header fade-in-up" style="text-align: center;">
+                    <p class="section-tag">Planos de IA</p>
+                    <h2>Escolha o nível ideal para você</h2>
+                    <p class="section-desc" style="margin-inline: auto;">De quem está começando a quem quer automação total — temos o plano certo para cada estágio.</p>
                 </div>
 
-                <div class="pricing-grid">
-                    <!-- Starter -->
-                    <div class="price-card fade-in-up">
-                        <div class="plan-badge bronze">Starter — Bronze</div>
-                        <h3>Atendimento inteligente</h3>
-                        <div class="price">
+                <div class="plans-grid">
+                    <!-- BRONZE -->
+                    <div class="plan-card glass-card fade-in-up">
+                        <p class="plan-tier">Starter — Bronze</p>
+                        <h3>Atendimento Inteligente</h3>
+                        <div class="plan-price">
                             <span class="currency">R$</span>
                             <span class="amount">1.500</span>
+                            <span class="period"> / entrega única</span>
                         </div>
-                        <p class="period">entrega única</p>
-                        
-                        <ul class="features-list">
-                            <li><i class="ph-fill ph-check-circle"></i> Agente de IA treinado no seu negócio</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Integração com WhatsApp ou site</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Banco de dados em custódia própria</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Salva histórico e dados dos clientes</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Atendimento 24h, 7 dias por semana</li>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Agente de IA treinado</li>
+                            <li><i class="ph ph-check-circle"></i> WhatsApp ou Site</li>
+                            <li><i class="ph ph-check-circle"></i> Custódia própria de dados</li>
+                            <li><i class="ph ph-check-circle"></i> Histórico de clientes</li>
+                            <li><i class="ph ph-check-circle"></i> Atendimento 24/7</li>
                         </ul>
-                        <a href="#" class="btn btn-outline btn-full">Começar com Starter</a>
+                        <a href="#contato" class="btn btn-secondary btn-full">Começar agora</a>
                     </div>
 
-                    <!-- Pro -->
-                    <div class="price-card popular fade-in-up delay-1">
-                        <div class="popular-tag">Mais popular</div>
-                        <div class="plan-badge silver">Pro — Prata</div>
-                        <h3>Atendimento + CRM completo</h3>
-                        <div class="price">
+                    <!-- SILVER -->
+                    <div class="plan-card glass-card popular fade-in-up delay-1">
+                        <div class="popular-badge">Mais popular</div>
+                        <p class="plan-tier">Pro — Prata</p>
+                        <h3>Atendimento + CRM</h3>
+                        <div class="plan-price">
                             <span class="currency">R$</span>
                             <span class="amount">2.700</span>
+                            <span class="period"> / entrega única</span>
                         </div>
-                        <p class="period">entrega única</p>
-                        
-                        <ul class="features-list">
-                            <li><i class="ph-fill ph-check-circle"></i> Tudo do plano Starter</li>
-                            <li><i class="ph-fill ph-check-circle"></i> CRM com painel Kanban de leads</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Centraliza vários números de WhatsApp</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Rastreio de pedidos automático</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Emissão de etiqueta com 1 clique</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Equipe de atendimento multi-agente</li>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Tudo do plano Bronze</li>
+                            <li><i class="ph ph-check-circle"></i> CRM Kanban de leads</li>
+                            <li><i class="ph ph-check-circle"></i> Multi-agente centralizado</li>
+                            <li><i class="ph ph-check-circle"></i> Rastreio de pedidos</li>
+                            <li><i class="ph ph-check-circle"></i> Etiqueta com 1 clique</li>
                         </ul>
-                        <a href="#" class="btn btn-primary btn-full">Começar com Pro</a>
+                        <a href="#contato" class="btn btn-primary btn-full">Escolher este plano</a>
                     </div>
 
-                    <!-- Advanced -->
-                    <div class="price-card fade-in-up delay-2">
-                        <div class="plan-badge gold">Advanced — Ouro</div>
-                        <h3>Automação e crescimento total</h3>
-                        <div class="price">
+                    <!-- GOLD -->
+                    <div class="plan-card glass-card fade-in-up delay-2">
+                        <p class="plan-tier">Advanced — Ouro</p>
+                        <h3>Automação e Crescimento</h3>
+                        <div class="plan-price">
                             <span class="currency">R$</span>
                             <span class="amount">4.500</span>
+                            <span class="period"> / entrega única</span>
                         </div>
-                        <p class="period">entrega única</p>
-                        
-                        <ul class="features-list">
-                            <li><i class="ph-fill ph-check-circle"></i> Tudo dos planos Starter e Pro</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Follow-up e remarketing automáticos</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Mensagens personalizadas por perfil de lead</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Rastreio de UTMs (Google, Meta)</li>
-                            <li><i class="ph-fill ph-check-circle"></i> Automações de e-mail marketing</li>
-                            <li><i class="ph-fill ph-check-circle"></i> VPS dedicada para o cliente</li>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Tudo dos planos anteriores</li>
+                            <li><i class="ph ph-check-circle"></i> Follow-up automático</li>
+                            <li><i class="ph ph-check-circle"></i> Remarketing com IA</li>
+                            <li><i class="ph ph-check-circle"></i> Rastreio de UTMs</li>
+                            <li><i class="ph ph-check-circle"></i> VPS dedicada inclusa</li>
                         </ul>
-                        <a href="#" class="btn btn-outline btn-full">Começar com Advanced</a>
+                        <a href="#contato" class="btn btn-secondary btn-full">Crescer agora</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Additional Services -->
-        <section id="servicos" class="services">
+        <!-- ADICIONAIS -->
+        <section id="servicos" class="section">
             <div class="container">
                 <div class="section-header fade-in-up">
-                    <span class="badge">SERVIÇOS ADICIONAIS</span>
+                    <p class="section-tag">Serviços Adicionais</p>
                     <h2>Mais soluções para seu negócio</h2>
-                    <p>Combine com os planos de IA para resultados ainda maiores.</p>
+                    <p class="section-desc">Combine com os planos de IA para resultados ainda maiores.</p>
                 </div>
-                
-                <div class="services-list fade-in-up">
-                    <div class="service-row">
-                        <div class="service-info">
-                            <h4>Site Institucional</h4>
-                            <p>Com SEO, domínio e hospedagem</p>
-                        </div>
-                        <div class="service-price">R$ 1.800</div>
-                    </div>
-                    
-                    <div class="service-row">
-                        <div class="service-info">
-                            <h4>Landing Page</h4>
-                            <p>Alta conversão + pixel de rastreamento</p>
-                        </div>
-                        <div class="service-price">R$ 800</div>
-                    </div>
 
-                    <div class="service-row">
-                        <div class="service-info">
-                            <h4>Criativos com IA</h4>
-                            <p>Imagens, vídeos e copies para redes</p>
-                        </div>
-                        <div class="service-price">R$ 500</div>
+                <div class="services-grid">
+                    <div class="service-card glass-card fade-in-up">
+                        <div class="service-icon"><i class="ph ph-globe"></i></div>
+                        <h3>Site Institucional</h3>
+                        <p>Com SEO, domínio e hospedagem inclusos.</p>
+                        <p class="service-price">R$ 1.800</p>
                     </div>
-
-                    <div class="service-row">
-                        <div class="service-info">
-                            <h4>Gestão de Tráfego</h4>
-                            <p>Meta Ads + Google Ads com IA</p>
-                        </div>
-                        <div class="service-price">R$ 800/mês</div>
+                    <div class="service-card glass-card fade-in-up delay-1">
+                        <div class="service-icon"><i class="ph ph-rocket-launch"></i></div>
+                        <h3>Landing Page</h3>
+                        <p>Alta conversão + pixel de rastreamento.</p>
+                        <p class="service-price">R$ 800</p>
+                    </div>
+                    <div class="service-card glass-card fade-in-up delay-2">
+                        <div class="service-icon"><i class="ph ph-paint-brush-broad"></i></div>
+                        <h3>Criativos com IA</h3>
+                        <p>Imagens, vídeos e copies para redes.</p>
+                        <p class="service-price">R$ 500</p>
+                    </div>
+                    <div class="service-card glass-card fade-in-up delay-3">
+                        <div class="service-icon"><i class="ph ph-chart-pie"></i></div>
+                        <h3>Gestão de Tráfego</h3>
+                        <p>Meta Ads + Google Ads com IA.</p>
+                        <p class="service-price">R$ 800<span>/mês</span></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section id="faq" class="faq">
-            <div class="container">
+        <!-- FAQ -->
+        <section id="faq" class="section">
+            <div class="container narrow">
                 <div class="section-header fade-in-up">
-                    <span class="badge">DÚVIDAS FREQUENTES</span>
+                    <p class="section-tag">Dúvidas Frequentes</p>
                     <h2>Respondendo o que você já está pensando</h2>
                 </div>
-                
-                <div class="faq-accordion fade-in-up delay-1">
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            Como funciona o agente de IA? Ele realmente entende meu negócio? 
-                            <i class="ph ph-plus"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Sim! Nosso agente é treinado especificamente com os dados da sua empresa, produtos, tom de voz e regras de negócio. Ele aprende a responder exatamente como você ou sua melhor equipe de vendas responderia.</p>
+
+                <div class="faq-accordion fade-in-up">
+                    <div class="faq-item glass-card">
+                        <div class="faq-question">
+                            <span>Como funciona o agente de IA?</span>
+                            <i class="ph ph-caret-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Nosso agente é treinado com os dados da sua empresa, produtos, tom de voz e regras de negócio. Ele aprende a responder exatamente como você ou sua melhor equipe responderia.</p>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            Preciso ter conhecimento técnico para usar? 
-                            <i class="ph ph-plus"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Absolutamente não. Nós cuidamos de toda a configuração, integração e treinamento da IA. Você recebe o sistema pronto para usar e totalmente operacional.</p>
+                    <div class="faq-item glass-card">
+                        <div class="faq-question">
+                            <span>Preciso ter conhecimento técnico?</span>
+                            <i class="ph ph-caret-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutamente não. Nós cuidamos de toda a configuração, integração e treinamento. Você recebe o sistema pronto e totalmente operacional.</p>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            Qual a diferença entre os planos? 
-                            <i class="ph ph-plus"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>O Starter foca no atendimento ao cliente. O Pro inclui um CRM completo para gerenciar toda a jornada do lead. O Advanced é a automação máxima de marketing, engajando clientes mesmo após a primeira interação.</p>
+                    <div class="faq-item glass-card">
+                        <div class="faq-question">
+                            <span>O sistema funciona com meu WhatsApp atual?</span>
+                            <i class="ph ph-caret-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim! Podemos integrar a IA diretamente no número que você já utiliza, mantendo histórico e contatos existentes.</p>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            O sistema funciona com meu WhatsApp atual? 
-                            <i class="ph ph-plus"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Sim! Podemos integrar a IA diretamente no número que você já utiliza, mantendo o histórico e os contatos que sua empresa já possui.</p>
+                    <div class="faq-item glass-card">
+                        <div class="faq-question">
+                            <span>Em quanto tempo fica pronto?</span>
+                            <i class="ph ph-caret-down"></i>
                         </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            E se eu precisar de suporte depois da entrega? 
-                            <i class="ph ph-plus"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Nossa equipe estará disponível para suporte, ajustes no treinamento da IA e eventuais correções, garantindo que a máquina continue funcionando perfeitamente.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            Em quanto tempo fica pronto? 
-                            <i class="ph ph-plus"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>A implantação inicial costuma levar entre 7 e 14 dias, dependendo da complexidade do plano escolhido e da quantidade de dados para treinamento da IA.</p>
+                        <div class="faq-answer">
+                            <p>A implantação costuma levar entre 7 e 14 dias, dependendo da complexidade do plano e da quantidade de dados para treinamento.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="cta">
-            <div class="container text-center fade-in-up">
-                <h2>Pronto para deixar a IA trabalhar por você?</h2>
-                <p>Fale com a gente hoje. Mostre seu negócio e a gente monta a solução certa — sem enrolação.</p>
-                <div class="cta-actions">
-                    <a href="#" class="btn btn-primary">Falar com um especialista <i class="ph ph-arrow-up-right"></i></a>
-                    <a href="#planos" class="btn btn-secondary">Ver todos os planos</a>
+        <!-- CONTACT -->
+        <section id="contato" class="section">
+            <div class="container narrow">
+                <div class="section-header fade-in-up" style="text-align: center;">
+                    <p class="section-tag">Fale com a gente</p>
+                    <h2>Pronto para deixar a IA trabalhar por você?</h2>
+                    <p class="section-desc" style="margin-inline: auto;">Preencha o formulário e um especialista entra em contato em até 24h.</p>
+                </div>
+
+                <div class="form-wrapper glass-card fade-in-up">
+                    <form id="lead-form">
+                        <div class="form-grid">
+                            <div class="form-group slide-in-left">
+                                <label for="nome">Nome completo *</label>
+                                <input type="text" id="nome" name="nome" placeholder="João Silva" required>
+                            </div>
+                            <div class="form-group slide-in-right">
+                                <label for="email">E-mail corporativo *</label>
+                                <input type="email" id="email" name="email" placeholder="joao@empresa.com" required>
+                            </div>
+                            <div class="form-group slide-in-left">
+                                <label for="telefone">WhatsApp / Telefone *</label>
+                                <input type="tel" id="telefone" name="telefone" placeholder="(48) 99999-9999" required>
+                            </div>
+                            <div class="form-group slide-in-right">
+                                <label for="empresa">Nome da empresa</label>
+                                <input type="text" id="empresa" name="empresa" placeholder="Sua Empresa LTDA">
+                            </div>
+                            <div class="form-group full fade-in">
+                                <label>Soluções de interesse</label>
+                                <div class="checkbox-grid">
+                                    <label class="check-container">
+                                        <input type="checkbox" name="solucoes" value="Chatbot/IA">
+                                        <span class="checkmark"></span> Chatbot / IA
+                                    </label>
+                                    <label class="check-container">
+                                        <input type="checkbox" name="solucoes" value="CRM">
+                                        <span class="checkmark"></span> CRM
+                                    </label>
+                                    <label class="check-container">
+                                        <input type="checkbox" name="solucoes" value="Automacao">
+                                        <span class="checkmark"></span> Automação
+                                    </label>
+                                    <label class="check-container">
+                                        <input type="checkbox" name="solucoes" value="LandingPage">
+                                        <span class="checkmark"></span> Landing Page
+                                    </label>
+                                    <label class="check-container">
+                                        <input type="checkbox" name="solucoes" value="Trafego">
+                                        <span class="checkmark"></span> Tráfego Pago
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group full fade-in">
+                                <label for="mensagem">Como podemos ajudar?</label>
+                                <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre seu desafio..." rows="4"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="submit-btn" style="height: 54px; font-size: 1.1rem;">
+                            Falar com especialista <i class="ph ph-paper-plane-tilt"></i>
+                        </button>
+                    </form>
+
+                    <div id="form-success" class="form-feedback" style="display: none;">
+                        <i class="ph ph-check-circle"></i>
+                        <h3>Mensagem enviada com sucesso!</h3>
+                        <p>Nossa equipe vai entrar em contato com você em breve. Obrigado!</p>
+                    </div>
                 </div>
             </div>
-            <div class="cta-bg-glow"></div>
         </section>
+
     </main>
 
-    <footer>
-        <div class="container footer-content">
-
-            <div class="footer-logo">
-                <span
-                    style="font-family:'Outfit';font-weight:700;font-size:1.5rem;color:var(--text-main);">
-                    i<span style="color:var(--primary);">8</span> Company
-                </span>
-
-                <p>Automatize seu atendimento, organize seus leads e escale suas vendas.</p>
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                     <span style="font-family:'Outfit';font-weight:700;font-size:1.5rem;color:var(--text-main);">
+                        i<span style="color:var(--primary);">8</span> Company
+                    </span>
+                </a>
+                <p>Automatizando seu atendimento, organizando seus leads e escalando suas vendas com IA.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-icon"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#" class="social-icon"><i class="ph ph-envelope-simple"></i></a>
+                </div>
             </div>
 
-            <div class="footer-copy">
-                &copy; 2026 i8 Company. Todos os direitos reservados.
+            <div class="footer-nav">
+                <h4>Navegação</h4>
+                <div class="footer-nav-links">
+                    <a href="#por-que-i8">Por que a i8?</a>
+                    <a href="#planos">Planos de IA</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#faq">FAQ</a>
+                </div>
             </div>
 
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <p>administrativo@i8company.com</p>
+                <a href="#contato" class="btn btn-outline btn-full" style="margin-top: 1rem;">Falar com especialista</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 i8 Company. Todos os direitos reservados. Feito com IA.</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
-    <script>
-        const supabaseUrl = "https://jxyshhhxuubkgzixyqpg.supabase.co";
-        const supabaseKey = "sb_publishable_sY4MIDDhRy5Poon3dHPMFg_lBJ0L5H6";
-
-        window.supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-        console.log("Supabase conectado 🚀");
-    </script>
-
+    <script src="js/supabase.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
