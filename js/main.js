@@ -137,11 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const duration = video.duration;
             
         const heroText = document.querySelector('.hero-text.centered');
-        const bgLayer = document.querySelector('.bg-asset-layer');
-        const heroVisual = document.querySelector('.hero-visual');
         
         const scrubVideo = () => {
-            const scrollRange = window.innerHeight * 1.5;
+            const scrollRange = window.innerHeight * 2; // Longer range for background feel
             const scrollFraction = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
             
             targetTime = scrollFraction * duration;
@@ -152,23 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 video.currentTime = currentTime;
             }
 
-            // --- Reference-inspired Parallax & Motion ---
+            // --- Parallax for Content ---
             if (heroText) {
-                const textY = window.scrollY * 0.3;
-                const textOpacity = 1 - (window.scrollY / (window.innerHeight * 0.5));
+                const textY = window.scrollY * 0.4;
+                const textOpacity = 1 - (window.scrollY / (window.innerHeight * 0.7));
                 heroText.style.transform = `translateY(${textY}px)`;
                 heroText.style.opacity = Math.max(textOpacity, 0);
-            }
-
-            if (heroVisual) {
-                const visualScale = 1 + (window.scrollY * 0.0005);
-                const visualRotate = window.scrollY * 0.02;
-                heroVisual.style.transform = `scale(${visualScale}) rotateX(${visualRotate}deg)`;
-            }
-
-            if (bgLayer) {
-                const bgY = window.scrollY * 0.1;
-                bgLayer.style.transform = `translate(-50%, calc(-50% + ${bgY}px)) scale(1.1)`;
             }
             
             requestAnimationFrame(scrubVideo);

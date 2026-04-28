@@ -285,40 +285,55 @@ a {
     align-items: center;
     justify-content: center;
     text-align: center;
-    min-height: 80vh;
-}
-
-.hero-visual {
-    margin-bottom: -150px; /* Overlap effect like reference */
-    width: 100%;
-    z-index: 1;
+    min-height: 100vh;
+    padding-top: 80px;
 }
 
 .hero-text.centered {
-    z-index: 5;
+    z-index: 10;
     position: relative;
-    max-width: 900px;
+    max-width: 1000px;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-.video-scroll-wrapper.main-stage {
-    max-width: 750px; /* Larger for better impact */
-    margin: 0 auto;
-    transform: perspective(1000px) rotateX(5deg);
-    box-shadow: 0 50px 150px rgba(0, 0, 0, 0.8), 
-                0 0 60px var(--primary-glow);
-}
-
-.bg-asset-layer {
-    position: absolute;
+.hero-bg-video {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
     object-fit: cover;
-    opacity: 0.15;
-    filter: blur(40px) saturate(1.5);
-    mix-blend-mode: screen;
+    /* Invert if the video is white-background, keep purple via hue-rotate */
+    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1);
+    opacity: 0.6; /* Balanced for readability */
+    pointer-events: none;
+}
+
+/* Masking the video to avoid rectangular edges */
+.dynamic-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, 
+                transparent 20%, 
+                var(--bg-main) 80%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.video-overlay-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, 
+                var(--primary-glow) 0%, 
+                transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
 }
 
 .hero-text h1 {

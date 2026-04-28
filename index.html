@@ -20,8 +20,11 @@
 </head>
 
     <div class="dynamic-bg">
-        <!-- The requested GIF asset used as a subtle, dynamic background layer -->
-        <img src="assets/Banner gif/Banneri8-ezgif.com-gif-to-apng-converter.png" alt="" class="bg-asset-layer">
+        <!-- Integrated Video Background instead of a static layer -->
+        <video id="hero-video" playsinline muted preload="auto" class="hero-bg-video">
+            <source src="Banner i8.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay-glow"></div>
     </div>
 
     <header class="navbar">
@@ -56,21 +59,11 @@
 
         <!-- HERO -->
         <section class="hero">
-            <div class="hero-bg-glow"></div>
             <div class="container hero-container">
-                    <div class="hero-visual fade-in-up delay-2">
-                        <div class="video-scroll-wrapper main-stage">
-                            <video id="hero-video" playsinline muted preload="auto">
-                                <source src="Banner i8.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-overlay-glow"></div>
-                        </div>
-                    </div>
-
                     <div class="hero-text centered">
                         <div class="badge fade-in-up">
                             <span class="pulse-dot"></span> 
-                            The Future of Business with IA
+                            Inteligência Artificial + Performance
                         </div>
 
                         <h1 class="fade-in-up delay-1">
