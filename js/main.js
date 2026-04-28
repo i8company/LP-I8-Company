@@ -135,22 +135,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const handleMetadata = () => {
             const duration = video.duration;
+            const heroStory = document.querySelector('.hero-story');
+            const phrases = document.querySelectorAll('.story-phrase');
+            const dots = document.querySelectorAll('.nav-dot');
             
             const scrubVideo = () => {
-                // Calculate scroll fraction (how much of the first "fold" has been scrolled)
-                // We use 1.2 * innerHeight to give more room for the animation
-                const scrollRange = window.innerHeight * 1.5;
-                const scrollFraction = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
+                if (!heroStory) return;
                 
-                targetTime = scrollFraction * duration;
+                const scrollStart = heroStory.offsetTop;
+                const scrollEnd = scrollStart + heroStory.offsetHeight - window.innerHeight;
+                const scrollPos = window.scrollY;
                 
-                // Interpolation for smooth motion
-                currentTime += (targetTime - currentTime) * interpolationFactor;
+                // Calculate progress specifically within the hero-story section
+                let progress = (scrollPos - scrollStart) / (scrollEnd - scrollStart);
+                progress = Math.min(Math.max(progress, 0), 1);
                 
-                // Set video time
+                // Sync Video
+                targetTime = progress * duration;
+                currentTime += (targetTime - currentTime) * 0.15;
+                
                 if (Math.abs(currentTime - video.currentTime) > 0.01) {
                     video.currentTime = currentTime;
                 }
+
+                // Sync Phrases & Dots
+                const phraseIndex = Math.min(Math.floor(progress * phrases.length), phrases.length - 1);
+                
+                phrases.forEach((phrase, index) => {
+                    if (index === phraseIndex) {
+                        phrase.classList.add('active');
+                    } else {
+                        phrase.classList.remove('active');
+                    }
+                });
+
+                dots.forEach((dot, index) => {
+                    if (index === phraseIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
                 
                 requestAnimationFrame(scrubVideo);
             };
