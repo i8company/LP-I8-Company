@@ -136,24 +136,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const handleMetadata = () => {
             const duration = video.duration;
             
-            const scrubVideo = () => {
-                // Calculate scroll fraction (how much of the first "fold" has been scrolled)
-                // We use 1.2 * innerHeight to give more room for the animation
-                const scrollRange = window.innerHeight * 1.5;
-                const scrollFraction = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
-                
-                targetTime = scrollFraction * duration;
-                
-                // Interpolation for smooth motion
-                currentTime += (targetTime - currentTime) * interpolationFactor;
-                
-                // Set video time
-                if (Math.abs(currentTime - video.currentTime) > 0.01) {
-                    video.currentTime = currentTime;
-                }
-                
-                requestAnimationFrame(scrubVideo);
-            };
+        const heroText = document.querySelector('.hero-text.centered');
+        const bgLayer = document.querySelector('.bg-asset-layer');
+        const heroVisual = document.querySelector('.hero-visual');
+        
+        const scrubVideo = () => {
+            const scrollRange = window.innerHeight * 1.5;
+            const scrollFraction = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
+            
+            targetTime = scrollFraction * duration;
+            
+            currentTime += (targetTime - currentTime) * interpolationFactor;
+            
+            if (Math.abs(currentTime - video.currentTime) > 0.01) {
+                video.currentTime = currentTime;
+            }
+
+            // --- Reference-inspired Parallax & Motion ---
+            if (heroText) {
+                const textY = window.scrollY * 0.3;
+                const textOpacity = 1 - (window.scrollY / (window.innerHeight * 0.5));
+                heroText.style.transform = `translateY(${textY}px)`;
+                heroText.style.opacity = Math.max(textOpacity, 0);
+            }
+
+            if (heroVisual) {
+                const visualScale = 1 + (window.scrollY * 0.0005);
+                const visualRotate = window.scrollY * 0.02;
+                heroVisual.style.transform = `scale(${visualScale}) rotateX(${visualRotate}deg)`;
+            }
+
+            if (bgLayer) {
+                const bgY = window.scrollY * 0.1;
+                bgLayer.style.transform = `translate(-50%, calc(-50% + ${bgY}px)) scale(1.1)`;
+            }
+            
+            requestAnimationFrame(scrubVideo);
+        };
 
             // Start the scrubbing loop
             requestAnimationFrame(scrubVideo);
