@@ -42,6 +42,7 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     background-color: var(--bg-main);
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -51,6 +52,9 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    touch-action: manipulation;
 }
 
 /* Space Noise Overlay — very subtle, avoid darkening hero */
@@ -815,6 +819,51 @@ a {
 @media (max-width: 768px) {
     .container { padding: 0 1.5rem; }
     .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
     .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
     .form-wrapper { padding: 2.5rem 1.5rem; }
+
+    /* Hero mobile viewport fix (Android address bar) */
+    .story-sticky {
+        height: 100svh;
+        height: 100vh; /* fallback */
+    }
+
+    .story-phrase {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        padding: 0 1rem;
+    }
+}
+
+/* ─── TOUCH DEVICE FIXES ─── */
+@media (hover: none) and (pointer: coarse) {
+    /* Prevent sticky-hover on mobile/touch */
+    .glass-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .btn-primary:hover {
+        transform: none;
+    }
+}
+
+/* ─── REDUCED MOTION (accessibility + low-end devices) ─── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .story-phrase {
+        transition: opacity 0.2s ease !important;
+        transform: none !important;
+    }
+
+    .fade-in, .fade-in-up, .slide-in-left, .slide-in-right {
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

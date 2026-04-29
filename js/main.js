@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Navbar Scroll Effect
     const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    let lastScrollY = 0;
+    let ticking = false;
+
+    const updateNavbar = () => {
+        if (lastScrollY > 50) {
             navbar.style.background = 'rgba(3, 5, 12, 0.9)';
             navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
             navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
@@ -11,7 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.style.boxShadow = 'none';
             navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.08)';
         }
-    });
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        lastScrollY = window.scrollY;
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
+    }, { passive: true });
 
     // 2. FAQ Accordion Logic
     const faqItems = document.querySelectorAll('.faq-item');
@@ -125,23 +137,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    // 7. Video Scroll Scrubbing Logic
+
+    // 7. Video Scroll Scrubbing — optimized for Windows & Android
     const video = document.getElementById('hero-video');
     
     if (video) {
         let targetTime = 0;
         let currentTime = 0;
-        const interpolationFactor = 0.2; // Snappier response (was 0.1)
+        let isHeroVisible = true;
+        let rafId = null;
 
         const handleMetadata = () => {
             const duration = video.duration;
             const heroStory = document.querySelector('.hero-story');
             const phrases = document.querySelectorAll('.story-phrase');
             const dots = document.querySelectorAll('.nav-dot');
+
+            // Observe hero visibility — pause loop when off-screen for performance
+            const heroObserver = new IntersectionObserver((entries) => {
+                isHeroVisible = entries[0].isIntersecting;
+                if (isHeroVisible && !rafId) {
+                    rafId = requestAnimationFrame(scrubVideo);
+                }
+            }, { threshold: 0 });
+            heroObserver.observe(heroStory);
             
             const scrubVideo = () => {
-                if (!heroStory) return;
-                
+                if (!isHeroVisible) {
+                    rafId = null;
+                    return; // Stop loop when not visible
+                }
+
                 const scrollStart = heroStory.offsetTop;
                 const scrollEnd = scrollStart + heroStory.offsetHeight - window.innerHeight;
                 const scrollPos = window.scrollY;
@@ -150,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let progress = (scrollPos - scrollStart) / (scrollEnd - scrollStart);
                 progress = Math.min(Math.max(progress, 0), 1);
                 
-                // Sync Video
+                // Sync Video — smooth interpolation
                 targetTime = progress * duration;
                 currentTime += (targetTime - currentTime) * 0.15;
                 
@@ -177,11 +203,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 
-                requestAnimationFrame(scrubVideo);
+                rafId = requestAnimationFrame(scrubVideo);
             };
 
             // Start the scrubbing loop
-            requestAnimationFrame(scrubVideo);
+            rafId = requestAnimationFrame(scrubVideo);
         };
 
         if (video.readyState >= 1) {
@@ -190,12 +216,12 @@ document.addEventListener('DOMContentLoaded', () => {
             video.addEventListener('loadedmetadata', handleMetadata);
         }
 
-        // Fix for some browsers/mobile where video might not auto-play or show first frame
+        // Preload first frame — works on mobile + Windows
         video.play().then(() => {
             video.pause();
-        }).catch(e => {
-            // Video might need user interaction to "start" in some contexts
-            console.log("Video scrub waiting for interaction or auto-play block");
+        }).catch(() => {
+            // Auto-play blocked — set to first frame manually
+            video.currentTime = 0;
         });
     }
 });

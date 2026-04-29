@@ -1,8 +1,27 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*~
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Node
+node_modules/
+package-lock.json
+
 # Antigravity Skills
 skills/
 
-# OS metadata
-.DS_Store
+# Supabase local
+supabase/.temp/
 
-# Node dependencies
-node_modules/
+# Unused assets (raw exports, backups)
+i8 banner.png
+i8 banner final.png
+i8company.jpeg
+index.html.save
+assets/Banner gif/
