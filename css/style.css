@@ -331,18 +331,24 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Brand Purple (#7B4DFF) — soft, light, not too bright */
-    filter: invert(1) sepia(1) hue-rotate(220deg) saturate(0.6) brightness(0.7);
-    opacity: 0.45;
+    /* White lightning lines on black */
+    filter: invert(1) brightness(1.2);
+    opacity: 0.35;
 }
 
 .hero-video-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, 
-                transparent 0%, 
-                #000 90%);
+    /* Purple tint + vignette */
+    background: 
+        radial-gradient(circle at center, 
+            rgba(123, 77, 255, 0.15) 0%, 
+            transparent 60%),
+        radial-gradient(circle at center, 
+            transparent 0%, 
+            #000 90%);
     z-index: 1;
+    mix-blend-mode: normal;
 }
 
 .hero-visual-placeholder {
