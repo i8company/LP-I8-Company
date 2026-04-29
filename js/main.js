@@ -90,13 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const context = canvas?.getContext('2d');
     
     if (canvas && context) {
-        const frameCount = 39;
+        const frameCount = 90;
         const currentFrame = index => (
             `assets/hero-sequence/frame_${index.toString().padStart(3, '0')}.jpg`
         );
 
         const images = [];
         const frameData = { frame: 0 };
+        let targetProgress = 0;
+        let currentProgress = 0;
 
         // Preload images
         for (let i = 0; i < frameCount; i++) {
@@ -110,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!img || !img.complete) return;
 
             // Handle aspect ratio (cover effect)
+            const dpr = window.devicePixelRatio || 1;
             const canvasWidth = canvas.width;
             const canvasHeight = canvas.height;
             const imgWidth = img.width;
@@ -126,8 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const updateCanvasSize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
             render();
         };
 
@@ -138,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const phrases = document.querySelectorAll('.story-phrase');
         const dots = document.querySelectorAll('.nav-dot');
 
+        let lastPhraseIndex = -1;
+
         const scrubAnimation = () => {
             if (!heroStory) return;
             
@@ -146,11 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPos = window.scrollY;
             
             let progress = (scrollPos - scrollStart) / (scrollEnd - scrollStart);
-            progress = Math.min(Math.max(progress, 0), 1);
+            targetProgress = Math.min(Math.max(progress, 0), 1);
+            
+            // Smooth interpolation (lerp)
+            currentProgress += (targetProgress - currentProgress) * 0.15;
             
             // Sync Frame
             const frameIndex = Math.min(
-                Math.floor(progress * (frameCount - 1)),
+                Math.floor(currentProgress * (frameCount - 1)),
                 frameCount - 1
             );
             
@@ -159,24 +168,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 render();
             }
 
-            // Sync Phrases & Dots
-            const phraseIndex = Math.min(Math.floor(progress * phrases.length), phrases.length - 1);
+            // Sync Phrases & Dots - Only update if changed
+            const phraseIndex = Math.min(Math.floor(targetProgress * phrases.length), phrases.length - 1);
             
-            phrases.forEach((phrase, index) => {
-                if (index === phraseIndex) {
-                    phrase.classList.add('active');
-                } else {
-                    phrase.classList.remove('active');
-                }
-            });
+            if (phraseIndex !== lastPhraseIndex) {
+                lastPhraseIndex = phraseIndex;
+                
+                phrases.forEach((phrase, index) => {
+                    phrase.classList.toggle('active', index === phraseIndex);
+                });
 
-            dots.forEach((dot, index) => {
-                if (index === phraseIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === phraseIndex);
+                });
+            }
             
             requestAnimationFrame(scrubAnimation);
         };

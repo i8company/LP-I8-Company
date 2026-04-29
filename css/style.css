@@ -244,7 +244,7 @@ a {
 
 /* Scroll Story Hero */
 .hero-story {
-    height: 500vh; /* Long scroll depth for phrases */
+    height: 400vh; /* Smooth scroll depth for 90 high-res frames */
     position: relative;
     background: #0a0a12;
 }
