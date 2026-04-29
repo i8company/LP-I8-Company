@@ -331,9 +331,9 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Precise Electric Purple Filter */
-    filter: invert(1) hue-rotate(245deg) saturate(6) brightness(1.1) contrast(1.2);
-    opacity: 0.8;
+    /* Harmonized Brand Purple Filter */
+    filter: invert(1) hue-rotate(265deg) saturate(1.8) brightness(0.9) contrast(1.0);
+    opacity: 0.6;
 }
 
 .hero-video-overlay {
