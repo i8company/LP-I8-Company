@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>i8 Company | Automação e IA para o seu negócio</title>
+<meta name="description" content="A i8 Company transforma negócios com IA e marketing digital. Automatize seu atendimento e escale suas vendas no piloto automático.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="container">
+<div class="logo">
+<img src="assets/logo.png" id="nav-logo"
+onerror="this.style.display='none';document.getElementById('text-logo').style.display='block';">
+<span id="text-logo" style="display:none;font-family:'Outfit';font-weight:700;font-size:1.5rem;">
+i<span style="color:#6C63FF;">8</span> Company
+</span>
+</div>
+
+<nav class="nav-links">
+<a href="#features">Por que a i8?</a>
+<a href="#planos">Planos</a>
+<a href="#servicos">Serviços</a>
+<a href="#faq">FAQ</a>
+</nav>
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="container">
+<h1>Sua empresa no <b>piloto automático</b></h1>
+<p>Automatize atendimento, leads e vendas com IA.</p>
+</div>
+</section>
+
+<section id="features">
+<h2>Benefícios</h2>
+<p>Atendimento 24/7, leads organizados e automação completa.</p>
+</section>
+
+<section id="planos">
+<h2>Planos</h2>
+<p>Starter, Pro e Advanced para escalar seu negócio.</p>
+</section>
+
+<section id="servicos">
+<h2>Serviços</h2>
+<p>Landing pages, tráfego pago e automação.</p>
+</section>
+
+<section id="faq">
+<h2>FAQ</h2>
+<p>Dúvidas comuns sobre IA e automação.</p>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 i8 Company</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+const supabaseUrl = "https://jxyshhhxuubkgzixyqpg.supabase.co";
+const supabaseKey = "sb_publishable_sY4MIDDhRy5Poon3dHPMFg_lBJ0L5H6";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+console.log("Supabase conectado 🚀");
+</script>
+
+</body>
+</html>

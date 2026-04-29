@@ -42,7 +42,6 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     background-color: var(--bg-main);
-    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -52,18 +51,15 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    touch-action: manipulation;
 }
 
-/* Space Noise Overlay — very subtle, avoid darkening hero */
+/* Space Noise Overlay */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.15;
+    opacity: 0.4;
     pointer-events: none;
     z-index: 9999;
 }
@@ -250,7 +246,7 @@ a {
 .hero-story {
     height: 500vh; /* Long scroll depth for phrases */
     position: relative;
-    background: #0a0a12;
+    background: #000;
 }
 
 .story-sticky {
@@ -262,8 +258,6 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform;
-    transform: translateZ(0);
 }
 
 .story-container {
@@ -331,28 +325,30 @@ a {
     position: absolute;
     inset: 0;
     z-index: 0;
-    will-change: transform;
-    transform: translateZ(0);
 }
 
 #hero-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Clean render — no heavy filters for performance */
-    opacity: 0.85;
-    will-change: transform;
-    transform: translateZ(0);
+    /* Grayscale kills all native color → invert gives pure white lines on black */
+    filter: grayscale(1) invert(1) brightness(1.5);
+    opacity: 0.2;
+    mix-blend-mode: screen;
 }
 
 .hero-video-overlay {
     position: absolute;
     inset: 0;
-    /* Minimal edge vignette only — keep video crisp and visible */
+    /* Brand purple glow in center + dark vignette on edges */
     background:
+        radial-gradient(ellipse at center,
+            rgba(123, 77, 255, 0.25) 0%,
+            rgba(123, 77, 255, 0.05) 50%,
+            transparent 70%),
         radial-gradient(circle at center,
-            transparent 50%,
-            rgba(10, 10, 18, 0.4) 100%);
+            transparent 0%,
+            #000 92%);
     z-index: 1;
 }
 
@@ -819,51 +815,6 @@ a {
 @media (max-width: 768px) {
     .container { padding: 0 1.5rem; }
     .form-grid { grid-template-columns: 1fr; }
-    .form-group.full { grid-column: span 1; }
     .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
     .form-wrapper { padding: 2.5rem 1.5rem; }
-
-    /* Hero mobile viewport fix (Android address bar) */
-    .story-sticky {
-        height: 100svh;
-        height: 100vh; /* fallback */
-    }
-
-    .story-phrase {
-        font-size: clamp(1.5rem, 6vw, 2.5rem);
-        padding: 0 1rem;
-    }
-}
-
-/* ─── TOUCH DEVICE FIXES ─── */
-@media (hover: none) and (pointer: coarse) {
-    /* Prevent sticky-hover on mobile/touch */
-    .glass-card:hover {
-        transform: none;
-        box-shadow: none;
-    }
-
-    .btn-primary:hover {
-        transform: none;
-    }
-}
-
-/* ─── REDUCED MOTION (accessibility + low-end devices) ─── */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    .story-phrase {
-        transition: opacity 0.2s ease !important;
-        transform: none !important;
-    }
-
-    .fade-in, .fade-in-up, .slide-in-left, .slide-in-right {
-        opacity: 1 !important;
-        transform: none !important;
-    }
 }
