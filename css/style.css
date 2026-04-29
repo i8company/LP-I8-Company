@@ -340,15 +340,15 @@ a {
 .hero-video-overlay {
     position: absolute;
     inset: 0;
-    /* Brand purple glow in center + dark vignette on edges */
+    /* Brand purple glow in center + soft vignette on edges */
     background:
         radial-gradient(ellipse at center,
-            rgba(123, 77, 255, 0.25) 0%,
-            rgba(123, 77, 255, 0.05) 50%,
+            rgba(123, 77, 255, 0.12) 0%,
+            rgba(123, 77, 255, 0.03) 50%,
             transparent 70%),
         radial-gradient(circle at center,
-            transparent 0%,
-            #000 92%);
+            transparent 30%,
+            rgba(0, 0, 0, 0.45) 100%);
     z-index: 1;
 }
 
