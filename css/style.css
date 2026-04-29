@@ -331,14 +331,13 @@ a {
     transform: translateZ(0);
 }
 
-#hero-video {
+#hero-canvas {
     width: 100%;
     height: 100%;
     object-fit: cover;
     /* Clean render — no heavy filters for performance */
     opacity: 0.85;
-    will-change: transform;
-    transform: translateZ(0);
+    display: block;
 }
 
 .hero-video-overlay {

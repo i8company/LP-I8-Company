@@ -85,117 +85,106 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Supabase Lead Form logic
-    const form = document.getElementById('lead-form');
-    if (form && window.supabaseClient) {
-        const supabaseClient = window.supabaseClient;
-        
-        const submitBtn = document.getElementById('submit-btn');
-        const formSuccess = document.getElementById('form-success');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Enviando...';
-
-            const formData = new FormData(form);
-            const data = {
-                nome: formData.get('nome'),
-                email: formData.get('email'),
-                telefone: formData.get('telefone'),
-                empresa: formData.get('empresa'),
-                mensagem: formData.get('mensagem'),
-                solucoes: Array.from(formData.getAll('solucoes')).join(', '),
-                criado_em: new Date().toISOString()
-            };
-
-            const { error } = await supabaseClient
-                .from('leads')
-                .insert([data]);
-
-            if (error) {
-                console.error('Erro ao enviar lead:', error);
-                alert('Erro ao enviar. Tente novamente.');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Falar com especialista <i class="ph ph-paper-plane-tilt"></i>';
-            } else {
-                form.style.display = 'none';
-                formSuccess.style.display = 'flex';
-                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-    }
-    // 7. Video Scroll Scrubbing Logic
-    const video = document.getElementById('hero-video');
+    // 7. Canvas Scroll Scrubbing Logic (High Resolution)
+    const canvas = document.getElementById('hero-canvas');
+    const context = canvas?.getContext('2d');
     
-    if (video) {
-        let targetTime = 0;
-        let currentTime = 0;
-        const interpolationFactor = 0.2; // Snappier response (was 0.1)
+    if (canvas && context) {
+        const frameCount = 39;
+        const currentFrame = index => (
+            `assets/hero-sequence/frame_${index.toString().padStart(3, '0')}.jpg`
+        );
 
-        const handleMetadata = () => {
-            const duration = video.duration;
-            const heroStory = document.querySelector('.hero-story');
-            const phrases = document.querySelectorAll('.story-phrase');
-            const dots = document.querySelectorAll('.nav-dot');
-            
-            const scrubVideo = () => {
-                if (!heroStory) return;
-                
-                const scrollStart = heroStory.offsetTop;
-                const scrollEnd = scrollStart + heroStory.offsetHeight - window.innerHeight;
-                const scrollPos = window.scrollY;
-                
-                // Calculate progress specifically within the hero-story section
-                let progress = (scrollPos - scrollStart) / (scrollEnd - scrollStart);
-                progress = Math.min(Math.max(progress, 0), 1);
-                
-                // Sync Video
-                targetTime = progress * duration;
-                currentTime += (targetTime - currentTime) * 0.15;
-                
-                if (Math.abs(currentTime - video.currentTime) > 0.01) {
-                    video.currentTime = currentTime;
-                }
+        const images = [];
+        const frameData = { frame: 0 };
 
-                // Sync Phrases & Dots
-                const phraseIndex = Math.min(Math.floor(progress * phrases.length), phrases.length - 1);
-                
-                phrases.forEach((phrase, index) => {
-                    if (index === phraseIndex) {
-                        phrase.classList.add('active');
-                    } else {
-                        phrase.classList.remove('active');
-                    }
-                });
-
-                dots.forEach((dot, index) => {
-                    if (index === phraseIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-                
-                requestAnimationFrame(scrubVideo);
-            };
-
-            // Start the scrubbing loop
-            requestAnimationFrame(scrubVideo);
-        };
-
-        if (video.readyState >= 1) {
-            handleMetadata();
-        } else {
-            video.addEventListener('loadedmetadata', handleMetadata);
+        // Preload images
+        for (let i = 0; i < frameCount; i++) {
+            const img = new Image();
+            img.src = currentFrame(i);
+            images.push(img);
         }
 
-        // Fix for some browsers/mobile where video might not auto-play or show first frame
-        video.play().then(() => {
-            video.pause();
-        }).catch(e => {
-            // Video might need user interaction to "start" in some contexts
-            console.log("Video scrub waiting for interaction or auto-play block");
-        });
+        const render = () => {
+            const img = images[frameData.frame];
+            if (!img || !img.complete) return;
+
+            // Handle aspect ratio (cover effect)
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+            const imgWidth = img.width;
+            const imgHeight = img.height;
+            
+            const ratio = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
+            const newWidth = imgWidth * ratio;
+            const newHeight = imgHeight * ratio;
+            const x = (canvasWidth - newWidth) / 2;
+            const y = (canvasHeight - newHeight) / 2;
+
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            context.drawImage(img, x, y, newWidth, newHeight);
+        };
+
+        const updateCanvasSize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            render();
+        };
+
+        window.addEventListener('resize', updateCanvasSize);
+        updateCanvasSize();
+
+        const heroStory = document.querySelector('.hero-story');
+        const phrases = document.querySelectorAll('.story-phrase');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        const scrubAnimation = () => {
+            if (!heroStory) return;
+            
+            const scrollStart = heroStory.offsetTop;
+            const scrollEnd = scrollStart + heroStory.offsetHeight - window.innerHeight;
+            const scrollPos = window.scrollY;
+            
+            let progress = (scrollPos - scrollStart) / (scrollEnd - scrollStart);
+            progress = Math.min(Math.max(progress, 0), 1);
+            
+            // Sync Frame
+            const frameIndex = Math.min(
+                Math.floor(progress * (frameCount - 1)),
+                frameCount - 1
+            );
+            
+            if (frameData.frame !== frameIndex) {
+                frameData.frame = frameIndex;
+                render();
+            }
+
+            // Sync Phrases & Dots
+            const phraseIndex = Math.min(Math.floor(progress * phrases.length), phrases.length - 1);
+            
+            phrases.forEach((phrase, index) => {
+                if (index === phraseIndex) {
+                    phrase.classList.add('active');
+                } else {
+                    phrase.classList.remove('active');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                if (index === phraseIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            requestAnimationFrame(scrubAnimation);
+        };
+
+        // Start animation loop
+        requestAnimationFrame(scrubAnimation);
+        
+        // Initial render when first image loads
+        images[0].onload = render;
     }
 });
