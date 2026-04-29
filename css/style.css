@@ -53,13 +53,13 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Space Noise Overlay */
+/* Space Noise Overlay — very subtle, avoid darkening hero */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.4;
+    opacity: 0.15;
     pointer-events: none;
     z-index: 9999;
 }
@@ -246,7 +246,7 @@ a {
 .hero-story {
     height: 500vh; /* Long scroll depth for phrases */
     position: relative;
-    background: #000;
+    background: #0a0a12;
 }
 
 .story-sticky {
@@ -258,6 +258,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .story-container {
@@ -325,30 +327,28 @@ a {
     position: absolute;
     inset: 0;
     z-index: 0;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 #hero-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Grayscale kills all native color → invert gives pure white lines on black */
-    filter: grayscale(1) invert(1) brightness(1.5);
-    opacity: 0.2;
-    mix-blend-mode: screen;
+    /* Clean render — no heavy filters for performance */
+    opacity: 0.85;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .hero-video-overlay {
     position: absolute;
     inset: 0;
-    /* Brand purple glow in center + soft vignette on edges */
+    /* Minimal edge vignette only — keep video crisp and visible */
     background:
-        radial-gradient(ellipse at center,
-            rgba(123, 77, 255, 0.12) 0%,
-            rgba(123, 77, 255, 0.03) 50%,
-            transparent 70%),
         radial-gradient(circle at center,
-            transparent 30%,
-            rgba(0, 0, 0, 0.45) 100%);
+            transparent 50%,
+            rgba(10, 10, 18, 0.4) 100%);
     z-index: 1;
 }
 
