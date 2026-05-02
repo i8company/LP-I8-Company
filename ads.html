@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Tráfego | i8 Company</title>
+    <meta name="description" content="Meta, Google e TikTok Ads. Estratégias profissionais de tráfego pago.">
+    
+    <!-- ─── Favicon & Icons ─── -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7B4DFF">
+
+    <!-- ─── Google Fonts ─── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .service-page-hero {
+            padding: 160px 0 80px;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(123, 77, 255, 0.05), transparent);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-light);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: var(--transition-base);
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .service-content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (max-width: 991px) {
+            .service-content-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/i8logo.png" alt="i8 Company Logo" id="nav-logo">
+                <span id="text-logo">Company</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#servicos">Serviços</a>
+                <a href="index.html#por-que-i8">Por que a i8?</a>
+                <a href="index.html#planos">Planos</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="index.html#contato">Contato</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="index.html#contato" class="nav-cta">Contrate Já</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="service-page-hero">
+            <div class="container">
+                <a href="index.html#servicos" class="back-link">
+                    <i class="ph ph-arrow-left"></i> Voltar para serviços
+                </a>
+                
+                <div class="service-content-grid">
+                    <div class="fade-in-up">
+                        <p class="section-tag">Solução i8</p>
+                        <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem;">Gestão de Tráfego</h1>
+                        <div class="glass-card" style="padding: 2.5rem; border-left: 4px solid var(--primary);">
+                            <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8;">
+                                Meta, Google e TikTok Ads. Estratégias profissionais de tráfego pago focadas em ROI.
+                                <br><br>
+                                [Espaço para Copy Detalhada Posterior]
+                            </p>
+                        </div>
+                        <div style="margin-top: 3rem; display: flex; gap: 1.5rem;">
+                            <a href="index.html#contato" class="btn btn-primary">Começar agora</a>
+                        </div>
+                    </div>
+                    <div class="fade-in-up delay-1">
+                        <div class="glass-card" style="padding: 2rem; text-align: center;">
+                            <i class="ph ph-rocket-launch" style="font-size: 5rem; color: var(--primary-light); margin-bottom: 1.5rem; display: block;"></i>
+                            <h3 style="margin-bottom: 1rem;">Escala Acelerada</h3>
+                            <p style="color: var(--text-dim);">Encontre os clientes certos no momento exato da compra.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="assets/i8logo.png" alt="i8 Company Logo">
+                    <span id="text-logo">Company</span>
+                </a>
+                <p>Automatizando seu atendimento, organizando seus leads e escalando suas vendas com IA.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/i8.company/" target="_blank" class="social-icon"><i class="ph ph-instagram-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <h4>Navegação</h4>
+                <div class="footer-nav-links">
+                    <a href="index.html#por-que-i8">Por que a i8?</a>
+                    <a href="index.html#planos">Planos de IA</a>
+                    <a href="index.html#servicos">Serviços</a>
+                    <a href="index.html#faq">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <p>admi8company@gmail.com</p>
+                <a href="index.html#contato" class="btn btn-outline btn-full" style="margin-top: 1rem;">Falar com especialista</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 i8 Company. Todos os direitos reservados. Feito com IA.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
