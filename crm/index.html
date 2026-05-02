@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM Gestão | i8 Company</title>
-    <meta name="description" content="Gestão completa personalizada para seu negócio em uma plataforma multi-usuario com seu dominio e marca.">
+    <title>CRM e Gestão | i8 Company</title>
+    <meta name="description" content="Seu negócio inteiro. Uma plataforma. Seu nome na tela. CRM personalizado com atendimento omnichannel, funil e gestão financeira.">
     
     <!-- ─── Favicon & Icons ─── -->
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#7B4DFF">
 
     <!-- ─── Google Fonts ─── -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -26,12 +26,29 @@
     <link rel="stylesheet" href="../css/style.css">
     <style>
         .service-page-hero {
-            padding: 160px 0 80px;
-            min-height: 60vh;
+            padding: 120px 0 60px;
+            min-height: 70vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at top right, rgba(123, 77, 255, 0.05), transparent);
+            background: radial-gradient(circle at top right, rgba(123, 77, 255, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
         }
+
+        .service-page-hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--primary-glow);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: glowBreath 8s infinite alternate;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -41,17 +58,195 @@
             margin-bottom: 2rem;
             transition: var(--transition-base);
         }
+
         .back-link:hover {
             transform: translateX(-5px);
+            color: white;
         }
+
         .service-content-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
             align-items: center;
         }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(to bottom, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .visual-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .visual-card i {
+            font-size: 6rem;
+            color: var(--primary-light);
+            filter: drop-shadow(0 0 20px var(--primary-glow));
+        }
+
+        .features-detailed {
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .features-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mini-feature-card {
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-glass);
+            transition: var(--transition-bounce);
+        }
+
+        .mini-feature-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-8px);
+        }
+
+        .mini-icon {
+            font-size: 2rem;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .audience-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition-base);
+        }
+        
+        .audience-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        .audience-card i {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            flex-shrink: 0;
+        }
+        
+        .audience-card p {
+            margin: 0;
+            font-weight: 500;
+            color: white;
+        }
+
+        .edge-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, rgba(123, 77, 255, 0.05), transparent);
+        }
+
+        .edge-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            background: rgba(3, 5, 12, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .final-cta {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        /* Plan overrides */
+        .plan-card .plan-tier {
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .plan-price .period.block {
+            display: block;
+            font-size: 0.9rem;
+            margin-top: -0.2rem;
+        }
+        
+        .plan-price-monthly {
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-price-monthly .plus {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+        
+        .plan-features li {
+            align-items: flex-start;
+        }
+        
+        .plan-features i {
+            margin-top: 0.2rem;
+        }
+
         @media (max-width: 991px) {
-            .service-content-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .service-content-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+            .hero-subtitle {
+                margin-inline: auto;
+            }
         }
     </style>
 </head>
@@ -78,6 +273,7 @@
     </header>
 
     <main>
+        <!-- HERO -->
         <section class="service-page-hero">
             <div class="container">
                 <a href="../index.html#servicos" class="back-link">
@@ -86,29 +282,242 @@
                 
                 <div class="service-content-grid">
                     <div class="fade-in-up">
-                        <p class="section-tag">Solução i8</p>
-                        <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem;">CRM Gestão</h1>
-                        <div class="glass-card" style="padding: 2.5rem; border-left: 4px solid var(--primary);">
-                            <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8;">
-                                Gestão completa personalizada para seu negócio em uma plataforma multi-usuário com seu domínio e marca. Controle total do seu funil de vendas.
-                                <br><br>
-                                [Espaço para Copy Detalhada Posterior]
-                            </p>
-                        </div>
-                        <div style="margin-top: 3rem; display: flex; gap: 1.5rem;">
-                            <a href="../index.html#contato" class="btn btn-primary">Começar agora</a>
+                        <p class="section-tag" style="font-size: 1rem; font-weight: 800; letter-spacing: 2px;">GESTÃO CENTRALIZADA</p>
+                        <h1 class="hero-title">Seu negócio inteiro. Uma plataforma. <span class="highlight">Seu nome</span> na tela.</h1>
+                        <p class="hero-subtitle">
+                            O CRM da i8 é personalizado, multi-usuário e construído sob medida para o seu negócio — com atendimento omnichannel, funil visual, controle financeiro, estoque, pedidos e muito mais. Tudo integrado. Tudo automatizado.
+                        </p>
+                        <div style="display: flex; gap: 1.5rem; justify-content: inherit;">
+                            <a href="#planos-crm" class="btn btn-primary">Ver planos CRM</a>
+                            <a href="../index.html#contato" class="btn btn-outline">Falar com especialista</a>
                         </div>
                     </div>
-                    <div class="fade-in-up delay-1">
-                        <div class="glass-card" style="padding: 2rem; text-align: center;">
-                            <i class="ph ph-users-three" style="font-size: 5rem; color: var(--primary-light); margin-bottom: 1.5rem; display: block;"></i>
-                            <h3 style="margin-bottom: 1rem;">White Label</h3>
-                            <p style="color: var(--text-dim);">Sua própria plataforma de gestão com a sua identidade visual.</p>
+                    
+                    <div class="service-visual fade-in-up delay-1">
+                        <div class="visual-card">
+                            <i class="ph ph-users-three"></i>
+                            <div style="margin-top: 2rem;">
+                                <h3 style="margin-bottom: 0.5rem; color: #fff;">Sua Marca, Seu CRM</h3>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Plataforma Whitelabel</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- CREDIBILITY -->
+        <section class="section">
+            <div class="container" style="text-align: center;">
+                <div class="section-header fade-in-up">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">FIM DO CAOS</p>
+                    <h2 style="margin-inline: auto; max-width: 800px;">Planilha por aqui. WhatsApp por ali. Estoque em outro lugar. Financeiro numa pasta.</h2>
+                    <p class="section-desc" style="margin: 2rem auto;">Isso não é gestão — é caos disfarçado de rotina. O CRM i8 centraliza tudo numa plataforma com a sua marca, no seu domínio, do jeito que o seu negócio precisa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features-detailed">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center; margin-bottom: 3rem;">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">FUNCIONALIDADES</p>
+                    <h2 style="margin-inline: auto; max-width: 800px; font-size: 3rem;">Tudo que você precisa para gerir, vender e crescer — num só lugar.</h2>
+                </div>
+
+                <div class="features-mini-grid">
+                    <div class="mini-feature-card fade-in-up">
+                        <i class="ph ph-chats-circle mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Atendimento Multi-Canal</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">WhatsApp, Instagram e Facebook integrados. Toda sua equipe atendendo no mesmo lugar.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-1">
+                        <i class="ph ph-funnel mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Funil de Vendas Visual</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Visualize onde cada lead está. Arraste, atualize e feche — com sincronização instantânea.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-2">
+                        <i class="ph ph-currency-circle-dollar mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Controle Financeiro</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Receitas, despesas e divisão entre sócios organizada. Sem achismo, sem confusão.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up">
+                        <i class="ph ph-package mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Estoque e Notas</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Gerencie estoque, emita notas fiscais e gere etiquetas de envio em segundos.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-1">
+                        <i class="ph ph-calendar-check mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Pedidos e Agenda</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Controle total de pedidos ou agenda num painel simples, acessível por toda a equipe.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-2">
+                        <i class="ph ph-chart-line-up mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Métricas em Tempo Real</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Faturamento, CPA, Receita, Margem. Decisões baseadas em dados, não em intuição.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up">
+                        <i class="ph ph-plug mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Integrações Poderosas</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Conecte seu e-commerce e gateways diretamente à plataforma. Um ecossistema completo.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-1">
+                        <i class="ph ph-paint-brush mini-icon"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Sua Marca, Seu Domínio</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">O CRM é entregue com a sua identidade visual. Seu cliente vê a sua marca, não a nossa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUDIENCE -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center;">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">PARA QUEM É</p>
+                    <h2 style="font-size: 2.5rem; max-width: 800px; margin: 0 auto;">Feito para negócios que cresceram e precisam de uma gestão à altura.</h2>
+                </div>
+                
+                <div class="audience-grid fade-in-up delay-1">
+                    <div class="audience-card">
+                        <i class="ph ph-shopping-cart"></i>
+                        <p>E-commerces com alto volume</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-stethoscope"></i>
+                        <p>Clínicas com agenda de clientes</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-users"></i>
+                        <p>Times de vendas e múltiplos atendentes</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-chart-pie-slice"></i>
+                        <p>Sócios que precisam de controle claro</p>
+                    </div>
+                    <div class="audience-card" style="grid-column: 1 / -1; justify-content: center; background: rgba(123, 77, 255, 0.1); border-color: rgba(123, 77, 255, 0.3);">
+                        <i class="ph ph-rocket-launch"></i>
+                        <p>Qualquer empresa que quer parar de improvisar e começar a escalar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANS -->
+        <section id="planos-crm" class="section">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center; margin-bottom: 4rem;">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">PLANOS CRM</p>
+                    <h2 style="font-size: 3rem;">Escolha o plano ideal para o seu estágio.</h2>
+                </div>
+
+                <div class="plans-grid">
+                    <!-- Starter -->
+                    <div class="plan-card glass-card fade-in-up">
+                        <div class="plan-header">
+                            <p class="plan-tier" style="color: #CD7F32;">Starter — Bronze</p>
+                            <h3>Automação Essencial</h3>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="amount">1.500</span>
+                                <span class="period block">implementação</span>
+                            </div>
+                            <div class="plan-price-monthly">
+                                <span class="plus">+ R$ 250</span>
+                                <span class="period">/mês</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Agente de IA 24h (WhatsApp e Site)</li>
+                            <li><i class="ph ph-check-circle"></i> Fluxo personalizado p/ venda e agendamento</li>
+                            <li><i class="ph ph-check-circle"></i> Banco de dados c/ salvamento automático</li>
+                            <li><i class="ph ph-check-circle"></i> Suporte para correções e melhorias</li>
+                        </ul>
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse no Plano Starter CRM da i8 Company!" class="btn btn-outline btn-full">Quero o Plano Starter</a>
+                    </div>
+
+                    <!-- Pro -->
+                    <div class="plan-card glass-card popular fade-in-up delay-1">
+                        <div class="popular-badge">Mais Popular</div>
+                        <div class="plan-header">
+                            <p class="plan-tier" style="color: #C0C0C0;">Pro — Prata</p>
+                            <h3>Gestão Integrada (Inclui Starter)</h3>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="amount">2.900</span>
+                                <span class="period block">implementação</span>
+                            </div>
+                            <div class="plan-price-monthly">
+                                <span class="plus">+ R$ 350</span>
+                                <span class="period">/mês</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> CRM personalizado c/ domínio e marca</li>
+                            <li><i class="ph ph-check-circle"></i> Atendimento multi-instância e multi-canal</li>
+                            <li><i class="ph ph-check-circle"></i> Múltiplos WhatsApp + Insta + Face</li>
+                            <li><i class="ph ph-check-circle"></i> Funil de vendas visual em tempo real</li>
+                            <li><i class="ph ph-check-circle"></i> Controle financeiro c/ divisão de sócios</li>
+                            <li><i class="ph ph-check-circle"></i> Estoque, nota fiscal e etiquetas automáticas</li>
+                            <li><i class="ph ph-check-circle"></i> Avisos de rastreio e agenda</li>
+                        </ul>
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse no Plano Pro CRM da i8 Company!" class="btn btn-primary btn-full">Quero o Plano Pro</a>
+                    </div>
+
+                    <!-- Advanced -->
+                    <div class="plan-card glass-card fade-in-up delay-2">
+                        <div class="plan-header">
+                            <p class="plan-tier" style="color: #FFD700;">Advanced — Ouro</p>
+                            <h3>Crescimento Auto (Inclui Pro)</h3>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="amount">4.500</span>
+                                <span class="period block">implementação</span>
+                            </div>
+                            <div class="plan-price-monthly">
+                                <span class="plus">+ R$ 450</span>
+                                <span class="period">/mês</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Follow-up e remarketing inteligente</li>
+                            <li><i class="ph ph-check-circle"></i> Qualificação e distribuição auto de leads</li>
+                            <li><i class="ph ph-check-circle"></i> Métricas completas (CPA, Receita, etc)</li>
+                            <li><i class="ph ph-check-circle"></i> UTMs e integração com Meta e Google Ads</li>
+                            <li><i class="ph ph-check-circle"></i> Nota fiscal e contrato automático</li>
+                            <li><i class="ph ph-check-circle"></i> Conexão com gateway logístico</li>
+                            <li><i class="ph ph-check-circle"></i> Infraestrutura VPS dedicada</li>
+                        </ul>
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse no Plano Advanced CRM da i8 Company!" class="btn btn-outline btn-full">Quero o Plano Advanced</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIRADA / PROVA -->
+        <section class="edge-section">
+            <div class="container">
+                <div class="edge-box fade-in-up">
+                    <p class="section-tag" style="color: var(--accent-cyan);">A Realidade Dói</p>
+                    <h2>Cada dia sem um CRM é um dia perdendo dinheiro sem saber.</h2>
+                    <p>
+                        Leads esquecidos. Pedidos atrasados. Financeiro desorganizado. Equipe sem visibilidade. Tudo isso tem um custo — e você paga ele todo mês sem perceber. O CRM i8 não é um gasto. É o sistema que vai fazer você parar de perder o que já ganhou.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="fade-in-up">
+                    <h2>Pronto para ter uma gestão com a sua cara?</h2>
+                    <p class="section-desc" style="margin: 1.5rem auto 3rem;">Fale com a i8 e descubra qual plano faz mais sentido para o seu negócio. Nossa equipe configura tudo — você só começa a usar.</p>
+                    <a href="../index.html#contato" class="btn btn-primary" style="padding: 1.25rem 3rem; font-size: 1.2rem;"><i class="ph ph-chats"></i> Quero meu CRM agora</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
