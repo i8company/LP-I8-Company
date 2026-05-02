@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atendimento com IA | i8 Company</title>
-    <meta name="description" content="Chatbot personalizado com fluxo que vende e agenda, treinado com os dados da sua empresa.">
+    <title>Chatbot com IA | i8 Company</title>
+    <meta name="description" content="Seu melhor vendedor trabalha 24h. Nunca falta. Nunca esquece. É IA. A i8 Company cria chatbots personalizados para seu negócio.">
     
     <!-- ─── Favicon & Icons ─── -->
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#7B4DFF">
 
     <!-- ─── Google Fonts ─── -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -26,12 +26,29 @@
     <link rel="stylesheet" href="../css/style.css">
     <style>
         .service-page-hero {
-            padding: 160px 0 80px;
-            min-height: 60vh;
+            padding: 120px 0 60px;
+            min-height: 70vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at top right, rgba(123, 77, 255, 0.05), transparent);
+            background: radial-gradient(circle at top right, rgba(123, 77, 255, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
         }
+
+        .service-page-hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--primary-glow);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: glowBreath 8s infinite alternate;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -41,17 +58,154 @@
             margin-bottom: 2rem;
             transition: var(--transition-base);
         }
+
         .back-link:hover {
             transform: translateX(-5px);
+            color: white;
         }
+
         .service-content-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
             align-items: center;
         }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(to bottom, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .visual-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .visual-card i {
+            font-size: 6rem;
+            color: var(--primary-light);
+            filter: drop-shadow(0 0 20px var(--primary-glow));
+        }
+
+        .features-detailed {
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .features-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mini-feature-card {
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-glass);
+            transition: var(--transition-bounce);
+        }
+
+        .mini-feature-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-8px);
+        }
+
+        .mini-icon {
+            font-size: 2rem;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .audience-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition-base);
+        }
+        
+        .audience-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        .audience-card i {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+        }
+        
+        .audience-card p {
+            margin: 0;
+            font-weight: 500;
+            color: white;
+        }
+
+        .edge-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, rgba(123, 77, 255, 0.05), transparent);
+        }
+
+        .edge-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            background: rgba(3, 5, 12, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .final-cta {
+            padding: 80px 0;
+            text-align: center;
+        }
+
         @media (max-width: 991px) {
-            .service-content-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .service-content-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+            .hero-subtitle {
+                margin-inline: auto;
+            }
         }
     </style>
 </head>
@@ -78,6 +232,7 @@
     </header>
 
     <main>
+        <!-- HERO -->
         <section class="service-page-hero">
             <div class="container">
                 <a href="../index.html#servicos" class="back-link">
@@ -86,29 +241,182 @@
                 
                 <div class="service-content-grid">
                     <div class="fade-in-up">
-                        <p class="section-tag">Solução i8</p>
-                        <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem;">Atendimento com IA</h1>
-                        <div class="glass-card" style="padding: 2.5rem; border-left: 4px solid var(--primary);">
-                            <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8;">
-                                Chatbot personalizado com fluxo que vende e agenda, treinado com os dados da sua empresa. 
-                                <br><br>
-                                [Espaço para Copy Detalhada Posterior]
-                            </p>
-                        </div>
-                        <div style="margin-top: 3rem; display: flex; gap: 1.5rem;">
-                            <a href="../index.html#contato" class="btn btn-primary">Começar agora</a>
+                        <p class="section-tag" style="font-size: 1rem; font-weight: 800; letter-spacing: 2px;">AUTOMATIZE SEU NEGÓCIO</p>
+                        <h1 class="hero-title">Seu melhor vendedor trabalha 24h. Nunca falta. Nunca esquece. <span class="highlight">É IA.</span></h1>
+                        <p class="hero-subtitle">
+                            A i8 Company cria chatbots personalizados com inteligência artificial treinados com os dados do seu negócio — para atender, fechar vendas e agendar horários automaticamente no WhatsApp e no seu site.
+                        </p>
+                        <div style="display: flex; gap: 1.5rem; justify-content: inherit;">
+                            <a href="#precos" class="btn btn-primary">Quero meu chatbot agora</a>
+                            <a href="../index.html#contato" class="btn btn-outline">Falar com especialista</a>
                         </div>
                     </div>
-                    <div class="fade-in-up delay-1">
-                        <div class="glass-card" style="padding: 2rem; text-align: center;">
-                            <i class="ph ph-chat-circle-dots" style="font-size: 5rem; color: var(--primary-light); margin-bottom: 1.5rem; display: block;"></i>
-                            <h3 style="margin-bottom: 1rem;">Automação 24/7</h3>
-                            <p style="color: var(--text-dim);">Sua empresa nunca para de vender, mesmo quando você está dormindo.</p>
+                    
+                    <div class="service-visual fade-in-up delay-1">
+                        <div class="visual-card">
+                            <i class="ph ph-robot"></i>
+                            <div style="margin-top: 2rem;">
+                                <h3 style="margin-bottom: 0.5rem; color: #fff;">AI Agent</h3>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Treinado para o seu negócio</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- CREDIBILITY -->
+        <section class="section">
+            <div class="container" style="text-align: center;">
+                <div class="section-header fade-in-up">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">O PROBLEMA DA DEMORA</p>
+                    <h2 style="margin-inline: auto; max-width: 800px;">Quantos clientes você perdeu porque demorou para responder?</h2>
+                    <p class="section-desc" style="margin: 2rem auto;">Com o Chatbot i8, nenhuma mensagem fica sem resposta. Nenhum lead esfria. Nenhuma venda escapa — seja você médico, lojista, prestador de serviço ou empreendedor digital.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features-detailed">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center; margin-bottom: 3rem;">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">O QUE O CHATBOT FAZ</p>
+                    <h2 style="margin-inline: auto; max-width: 800px; font-size: 3rem;">Um agente de IA completo, treinado do jeito da sua empresa.</h2>
+                </div>
+
+                <div class="features-mini-grid">
+                    <div class="mini-feature-card fade-in-up">
+                        <i class="ph ph-clock-user mini-icon"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Atendimento 24/7</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">O agente é treinado com as informações, tom de voz e dados do seu negócio. Ele fala como você — só que nunca para.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-1">
+                        <i class="ph ph-handshake mini-icon"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Fechamento de Vendas</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Não é um bot de FAQ. Ele conduz a conversa, quebra objeções e leva o cliente até o fechamento.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-2">
+                        <i class="ph ph-calendar-plus mini-icon"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Agendamento Automático</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">O cliente agenda horários diretamente pelo chat, sem precisar falar com ninguém da equipe.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up">
+                        <i class="ph ph-database mini-icon"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Banco de Dados Integrado</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Controle completo dos clientes atendidos, histórico de conversas e dados organizados para sua gestão.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-1">
+                        <i class="ph ph-whatsapp-logo mini-icon"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">WhatsApp + Site</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Um único agente presente nos dois canais mais usados pelos seus clientes — seja qual for o seu mercado.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-2">
+                        <i class="ph ph-brain mini-icon"></i>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">IA Treinada</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.7; line-height: 1.6;">Produtos, serviços, preços, objeções comuns, tom de voz. O bot aprende tudo sobre o negócio antes de entrar em campo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUDIENCE -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center;">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">PARA QUEM É</p>
+                    <h2 style="font-size: 2.5rem; max-width: 800px; margin: 0 auto;">Se o seu negócio recebe clientes, o Chatbot i8 trabalha por você.</h2>
+                </div>
+                
+                <div class="audience-grid fade-in-up delay-1">
+                    <div class="audience-card">
+                        <i class="ph ph-check-circle"></i>
+                        <p>Clínicas e profissionais de saúde</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-check-circle"></i>
+                        <p>Prestadores de serviço e autônomos</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-check-circle"></i>
+                        <p>Lojas físicas e e-commerces</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-check-circle"></i>
+                        <p>Infoprodutores e negócios digitais</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-check-circle"></i>
+                        <p>Restaurantes, academias e estúdios</p>
+                    </div>
+                    <div class="audience-card">
+                        <i class="ph ph-check-circle"></i>
+                        <p>Qualquer negócio que não quer perder cliente</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section id="precos" class="section">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center;">
+                    <p class="section-tag" style="font-size: 1.2rem; font-weight: 900; letter-spacing: 2px;">PACOTE COMPLETO</p>
+                    <h2 style="font-size: 2.5rem;">Tecnologia de ponta. Investimento acessível.</h2>
+                </div>
+
+                <div class="plans-grid" style="max-width: 500px; margin: 0 auto;">
+                    <div class="plan-card glass-card popular fade-in-up">
+                        <div class="popular-badge">Mais Pedido</div>
+                        <p class="plan-tier">Chatbot com IA</p>
+                        <h3>Implementação + Manutenção</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">1.500</span>
+                            <span class="period" style="display: block; font-size: 0.9rem;">implementação</span>
+                        </div>
+                        <div class="plan-price" style="margin-top: 0.5rem; margin-bottom: 2rem;">
+                            <span style="font-size: 1.5rem; color: var(--primary-light);">+ R$ 250</span>
+                            <span class="period">/mês manutenção</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Agente de IA treinado com seus dados</li>
+                            <li><i class="ph ph-check-circle"></i> Integração WhatsApp + Site</li>
+                            <li><i class="ph ph-check-circle"></i> Fechamento de vendas automatizado</li>
+                            <li><i class="ph ph-check-circle"></i> Agendamento automático de horários</li>
+                            <li><i class="ph ph-check-circle"></i> Banco de dados integrado dos clientes</li>
+                            <li><i class="ph ph-check-circle"></i> Tom de voz e identidade da sua marca</li>
+                            <li><i class="ph ph-check-circle"></i> Suporte e atualizações mensais inclusas</li>
+                        </ul>
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse no Chatbot com IA da i8 Company!" class="btn btn-primary btn-full">Quero meu chatbot</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIRADA / PROVA -->
+        <section class="edge-section">
+            <div class="container">
+                <div class="edge-box fade-in-up">
+                    <p class="section-tag" style="color: var(--accent-cyan);">A Concorrência Não Para</p>
+                    <h2>Seu concorrente já está atendendo enquanto você dorme.</h2>
+                    <p>
+                        O mercado não espera. O cliente que não é respondido em minutos vai para o próximo. Com o Chatbot i8, você garante que nenhuma oportunidade seja perdida — independente do horário, do volume de mensagens ou do tamanho do seu time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="fade-in-up">
+                    <h2>Pronto para automatizar seu atendimento e vender mais?</h2>
+                    <p class="section-desc" style="margin: 1.5rem auto 3rem;">Fale com a i8 e tenha um agente de IA trabalhando pelo seu negócio em poucos dias.</p>
+                    <a href="../index.html#contato" class="btn btn-primary" style="padding: 1.25rem 3rem; font-size: 1.2rem;">Quero meu chatbot agora <i class="ph ph-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
