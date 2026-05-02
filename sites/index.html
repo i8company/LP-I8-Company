@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sites e Landing Pages | i8 Company</title>
-    <meta name="description" content="Alta conversão + pixel de rastreamento. Com SEO, domínio e hospedagem inclusos.">
+    <meta name="description" content="A i8 Company desenvolve sites e landing pages com design orientado a conversão, inteligência artificial integrada e estrutura pensada para transformar visitantes em clientes.">
     
     <!-- ─── Favicon & Icons ─── -->
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#7B4DFF">
 
     <!-- ─── Google Fonts ─── -->
@@ -27,11 +27,28 @@
     <style>
         .service-page-hero {
             padding: 160px 0 80px;
-            min-height: 60vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at top right, rgba(123, 77, 255, 0.05), transparent);
+            background: radial-gradient(circle at top right, rgba(123, 77, 255, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
         }
+
+        .service-page-hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--primary-glow);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: glowBreath 8s infinite alternate;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -41,17 +58,148 @@
             margin-bottom: 2rem;
             transition: var(--transition-base);
         }
+
         .back-link:hover {
             transform: translateX(-5px);
+            color: white;
         }
+
         .service-content-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
             align-items: center;
         }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(to bottom, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .service-visual {
+            position: relative;
+        }
+
+        .visual-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .visual-card i {
+            font-size: 6rem;
+            color: var(--primary-light);
+            filter: drop-shadow(0 0 20px var(--primary-glow));
+        }
+
+        .floating-element {
+            position: absolute;
+            background: var(--primary);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: 0;
+            animation: spaceFloat 10s infinite ease-in-out;
+        }
+
+        /* Features Section */
+        .features-detailed {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .features-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mini-feature-card {
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-glass);
+            transition: var(--transition-bounce);
+        }
+
+        .mini-feature-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-8px);
+        }
+
+        .mini-icon {
+            font-size: 2rem;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* Competitive Edge Section */
+        .edge-section {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, rgba(123, 77, 255, 0.05), transparent);
+        }
+
+        .edge-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            background: rgba(3, 5, 12, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .edge-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .edge-box p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* CTA Section Override */
+        .final-cta {
+            padding: 140px 0;
+            text-align: center;
+        }
+
         @media (max-width: 991px) {
-            .service-content-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .service-content-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+            .hero-subtitle {
+                margin-inline: auto;
+            }
+            .service-page-hero {
+                padding-top: 120px;
+            }
         }
     </style>
 </head>
@@ -78,6 +226,7 @@
     </header>
 
     <main>
+        <!-- HERO -->
         <section class="service-page-hero">
             <div class="container">
                 <a href="../index.html#servicos" class="back-link">
@@ -86,29 +235,162 @@
                 
                 <div class="service-content-grid">
                     <div class="fade-in-up">
-                        <p class="section-tag">Solução i8</p>
-                        <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem;">Sites e Landing Pages</h1>
-                        <div class="glass-card" style="padding: 2.5rem; border-left: 4px solid var(--primary);">
-                            <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8;">
-                                Alta conversão + pixel de rastreamento. Com SEO, domínio e hospedagem inclusos.
-                                <br><br>
-                                [Espaço para Copy Detalhada Posterior]
-                            </p>
-                        </div>
-                        <div style="margin-top: 3rem; display: flex; gap: 1.5rem;">
-                            <a href="../index.html#contato" class="btn btn-primary">Começar agora</a>
+                        <p class="section-tag">Máquina de Vendas</p>
+                        <h1 class="hero-title">Seu site não é um cartão de visitas. <span class="highlight">É a sua máquina de vendas.</span></h1>
+                        <p class="hero-subtitle">
+                            A i8 Company desenvolve sites e landing pages com design orientado a conversão, inteligência artificial integrada e estrutura pensada para transformar visitantes em clientes.
+                        </p>
+                        <div style="display: flex; gap: 1.5rem; justify-content: inherit;">
+                            <a href="#precos" class="btn btn-primary">Ver planos e preços</a>
+                            <a href="../index.html#contato" class="btn btn-outline">Falar com especialista</a>
                         </div>
                     </div>
-                    <div class="fade-in-up delay-1">
-                        <div class="glass-card" style="padding: 2rem; text-align: center;">
-                            <i class="ph ph-browser" style="font-size: 5rem; color: var(--primary-light); margin-bottom: 1.5rem; display: block;"></i>
-                            <h3 style="margin-bottom: 1rem;">Design de Elite</h3>
-                            <p style="color: var(--text-dim);">Sua presença digital com a autoridade que seu negócio merece.</p>
+                    
+                    <div class="service-visual fade-in-up delay-1">
+                        <div class="floating-element" style="top: -20px; right: -20px;"></div>
+                        <div class="visual-card">
+                            <i class="ph ph-browser"></i>
+                            <div style="margin-top: 2rem;">
+                                <div style="width: 60%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 12px;"></div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 12px;"></div>
+                                <div style="width: 80%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div>
+                            </div>
                         </div>
+                        <div class="floating-element" style="bottom: -30px; left: -30px; background: var(--primary-light);"></div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- CREDIBILITY -->
+        <section class="section">
+            <div class="container" style="text-align: center;">
+                <div class="section-header fade-in-up">
+                    <p class="section-tag">Presença Digital</p>
+                    <h2>Empresas que crescem precisam de presença digital à altura da sua ambição.</h2>
+                    <p class="section-desc" style="margin-inline: auto;">Criamos experiências digitais que refletem o nível do seu negócio — e trabalham por ele 24h por dia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features-detailed">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <p class="section-tag">Diferenciais i8</p>
+                    <h2>O que faz um site i8 ser diferente de tudo que você já viu</h2>
+                </div>
+
+                <div class="features-mini-grid">
+                    <div class="mini-feature-card fade-in-up">
+                        <i class="ph ph-lightning mini-icon"></i>
+                        <h3>100% Responsivo</h3>
+                        <p>Seu site perfeito em qualquer tela — do celular ao ultrawide. Nenhum cliente perdido por falha de experiência.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-1">
+                        <i class="ph ph-target mini-icon"></i>
+                        <h3>Design Orientado a Conversão</h3>
+                        <p>Cada elemento é estrategicamente posicionado para guiar o visitante à ação. Nada é decorativo — tudo converte.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-2">
+                        <i class="ph ph-sparkle mini-icon"></i>
+                        <h3>Animações ao Scroll</h3>
+                        <p>Entrada de elementos com animação fluida conforme o usuário navega. Profissional, moderno e memorável.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up">
+                        <i class="ph ph-link mini-icon"></i>
+                        <h3>Integrações Completas</h3>
+                        <p>WhatsApp, CRM, pixel de rastreamento, Google Analytics e muito mais. Seu site conectado ao seu processo comercial.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-1">
+                        <i class="ph ph-magnifying-glass mini-icon"></i>
+                        <h3>SEO Estruturado</h3>
+                        <p>Construído para ser encontrado. Código limpo, velocidade otimizada e estrutura que o Google respeita.</p>
+                    </div>
+                    <div class="mini-feature-card fade-in-up delay-2">
+                        <i class="ph ph-cpu mini-icon"></i>
+                        <h3>IA no Processo</h3>
+                        <p>Da estratégia ao copy, usamos inteligência artificial para entregar resultados mais precisos, mais rápido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section id="precos" class="section">
+            <div class="container">
+                <div class="section-header fade-in-up" style="text-align: center;">
+                    <p class="section-tag">Investimento</p>
+                    <h2>Escolha o plano ideal para o seu negócio</h2>
+                </div>
+
+                <div class="plans-grid" style="max-width: 900px; margin: 0 auto;">
+                    <!-- LANDING PAGE -->
+                    <div class="plan-card glass-card fade-in-up">
+                        <p class="plan-tier">Foco em Lead</p>
+                        <h3>Landing Page</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">800</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Design orientado a conversão</li>
+                            <li><i class="ph ph-check-circle"></i> 100% responsivo</li>
+                            <li><i class="ph ph-check-circle"></i> Animações ao scroll</li>
+                            <li><i class="ph ph-check-circle"></i> Integração com WhatsApp e pixel</li>
+                            <li><i class="ph ph-check-circle"></i> SEO estruturado</li>
+                            <li><i class="ph ph-check-circle"></i> IA no processo criativo</li>
+                        </ul>
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse na Landing Page!" class="btn btn-secondary btn-full">Quero minha Landing Page</a>
+                    </div>
+
+                    <!-- INSTITUCIONAL -->
+                    <div class="plan-card glass-card popular fade-in-up delay-1">
+                        <div class="popular-badge">Mais Completo</div>
+                        <p class="plan-tier">Autoridade Total</p>
+                        <h3>Site Institucional / E-commerce</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">1.600</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="ph ph-check-circle"></i> Múltiplas páginas design premium</li>
+                            <li><i class="ph ph-check-circle"></i> 100% responsivo</li>
+                            <li><i class="ph ph-check-circle"></i> Animações ao scroll</li>
+                            <li><i class="ph ph-check-circle"></i> Integração com WhatsApp, CRM e pixel</li>
+                            <li><i class="ph ph-check-circle"></i> IA no processo criativo</li>
+                            <li><i class="ph ph-check-circle"></i> Painel de gestão incluso</li>
+                        </ul>
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse no Site Institucional ou E-commerce!" class="btn btn-primary btn-full">Quero meu Site Completo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIRADA / PROVA -->
+        <section class="edge-section">
+            <div class="container">
+                <div class="edge-box fade-in-up">
+                    <p class="section-tag" style="color: var(--accent-cyan);">A Realidade do Mercado</p>
+                    <h2>Seu concorrente já tem um site assim.</h2>
+                    <p>
+                        Enquanto sua empresa usa um site desatualizado, seu concorrente está captando leads, qualificando clientes e fechando vendas automaticamente. A i8 nivela o jogo — e coloca você à frente.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="final-cta section">
+            <div class="container">
+                <div class="fade-in-up">
+                    <h2>Pronto para ter um site que trabalha por você?</h2>
+                    <p class="section-desc" style="margin: 1.5rem auto 3rem;">Fale com um especialista da i8 e descubra como transformar sua presença digital em resultado real.</p>
+                    <a href="../index.html#contato" class="btn btn-primary" style="padding: 1.25rem 3rem; font-size: 1.2rem;">Quero começar agora <i class="ph ph-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
